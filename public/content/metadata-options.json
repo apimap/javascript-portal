@@ -1,0 +1,41 @@
+{
+  "apiOptions": {
+    "visibilityOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ]
+  },
+  "apiVersionOptions": {
+    "releaseStatusOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ]
+  },
+  "organizationOptions": {
+    "architectureLayerOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ],
+    "businessUnitOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ]
+  }
+}
+

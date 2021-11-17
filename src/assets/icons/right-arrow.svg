@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="30"
+   height="20"
+   viewBox="0 0 7.9374997 5.2916668"
+   version="1.1"
+   id="svg33180"
+   inkscape:version="1.0 (b51213c273, 2020-08-10)"
+   sodipodi:docname="right-arrow.svg">
+  <defs
+     id="defs33174" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="18.343226"
+     inkscape:cx="19.101662"
+     inkscape:cy="16.230083"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1439"
+     inkscape:window-height="1107"
+     inkscape:window-x="1244"
+     inkscape:window-y="842"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata33177">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g10245-7"
+       transform="matrix(0.59986264,0,0,0.59986264,-58.551279,-115.03293)"
+       style="display:inline;stroke-width:0.882146;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         id="path10227-4"
+         style="fill:none;fill-opacity:1;stroke:#01acfb;stroke-width:0.882146;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:transform-center-x="-0.64263863"
+         inkscape:transform-center-y="-2.5216306e-06"
+         d="m 105.15822,192.93656 1.92792,1.61982 1.92792,1.61981 -1.92792,1.61982 -1.92792,1.61981"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         style="fill:none;stroke:#01acfb;stroke-width:0.882146;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 109.01406,196.17619 H 98.748092"
+         id="path10241-3" />
+    </g>
+  </g>
+</svg>

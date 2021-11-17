@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" data-build-timestamp-utc="<%= new Date().toISOString() %>">
+  <head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="color-scheme" content="dark light">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="author" content="Apimap.io version <%= VUE_APP_VERSION %> created <%= VUE_APP_CREATED %>">
+    <link rel="icon" type="image/svg+xml" href="<%= BASE_URL %>favicon.svg" />
+    <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>global.css" />
+    <script src="<%= BASE_URL %>customization.js"></script>
+    <link rel="stylesheet" href="<%= BASE_URL %>dark-theme.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="<%= BASE_URL %>light-theme.css" media="(prefers-color-scheme: light)">
+    <style>
+      html {
+          height: 100vh;
+      }
+      body {
+        margin: 0;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>Please enable JavaScript to continue on this page.</noscript>
+    <div id="app"></div>
+  </body>
+</html>
