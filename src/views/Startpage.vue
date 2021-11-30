@@ -1,6 +1,6 @@
 <template>
   <div class="consumer-startpage">
-    <CenterLayout>
+    <CenterLayout style="height:100%">
       <TaxonomyFilter :taxonomies="allTaxonomies" class="element" />
       <MetadataFilter class="element" />
       <div class="search-button" @click="search">SEARCH</div>
@@ -8,6 +8,9 @@
         <p>I want to make a API discoverable by others</p>
         <img :src="addApiElement" alt="+"/>
       </div>
+    </CenterLayout>
+    <CenterLayout style="height:100%">
+      <VerticalStackLayout><div>1</div><div>2</div></VerticalStackLayout>
     </CenterLayout>
   </div>
 </template>
@@ -18,7 +21,7 @@ import MetadataFilter from "@/views/Filter/MetadataFilter";
 
 import addApiElement from "@/assets/elements/add-api-element.svg";
 
-import {CenterLayout} from "@apimap/layout-core";
+import {CenterLayout, VerticalStackLayout} from "@apimap/layout-core";
 
 import { mapActions, mapGetters } from "vuex";
 import {CLEAR_ALL_SELECTIONS} from "@/store/search/store";
@@ -29,7 +32,8 @@ export default {
   components: {
     MetadataFilter,
     TaxonomyFilter,
-    CenterLayout
+    CenterLayout,
+    VerticalStackLayout
   },
   mounted() {
     this.$store.dispatch(CLEAR_ALL_SELECTIONS, {});

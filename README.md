@@ -1,4 +1,4 @@
-Apimap.io API
+Apimap.io Portal
 ===
 
 🎉 **Welcome** 🎉
