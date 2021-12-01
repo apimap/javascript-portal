@@ -1,20 +1,49 @@
 :root {
-  --primary-background-color: #0c1026;
-  --primary-color: #999999;
-  --primary-text-color: #fff;
+    /* link */
+    --link-color: #5c5470;
+    --hover-link-color: #5c5470;
+    --light-link-color: #DBD8E3;
+    --light-hover-link-color: white;
 
-  --secondary-color: #f2f2f2;
-  --secondary-border-color: #00a3fa;
-  --secondary-background-color: #161d44;
+    /* generic */
+    --background-color: #2a2438;
+    --text-color: #DBD8E3;
+    --header-color: #DBD8E3;
+    --overlay-background-color: #5C5470;
+    --overlay-text-color: white;
 
-  --tertiary-color: white;
-  --tertiary-backgorund-color: #222740;
+    /* search */
+    --search-field-background-color: #DBD8E3;
+    --search-field-text-color: #2A2438 ;
+    --search-button-background-color: none;
+    --search-button-text-color: #10c170;
+    --search-button-border-color: #10c170;
+    --search-border-color: #2A2438;
+    --search-button-selected-text-color: #2A2438;
+    --search-button-selected-background-color: #10c170;
 
-  --primary-link-color: #00a3fa;
-  --primary-link-background-color: #00a3fa;
+    /* buttons */
+    --button-dark-background-color: white;
+    --button-dark-text-color: #2A2438;
+    --button-dark-border-color: #2A2438;
 
-  --warning-background-color: #dc143c;
-  --warning-color: #ffb6c1;
+    --button-light-background-color: #2A2438;
+    --button-light-text-color: white;
+    --button-light-border-color: white;
 
-  --safe-color: #44aa00ff;
+    --selected-item-background-color: white;
+    --selected-item-border-color: #5C5470;
+    --selected-item-text-color: #5C5470;
+    --unselected-item-background-color: none;
+    --unselected-item-text-color: #DBD8E3;
+    --unselected-item-border-color: #DBD8E3;
+
+    /* groups */
+    --box-border-color: #DBD8E3;
+    --box-background-color: #2A2438;
+    --box-text-color: white;
+
+    /* tooltip */
+    --tooltip-background-color: #5C5470;
+    --tooltip-text-color: white;
 }

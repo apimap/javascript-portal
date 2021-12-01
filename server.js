@@ -40,9 +40,10 @@ app.get( "/customization.js", ( request, response, next) => {
         response.header("Cache-Control", "no-cache")
         response.header("robots", "no-cache")
         response.send(
-            `const API_URL="${process.env.API_URL}"; \n`+
-            `const DEVELOPER_URL="${process.env.DEVELOPER_URL}";\n`+
-            `document.title="${process.env.TITLE}";`
+            `const APIMAP_API_URL="${process.env.APIMAP_API_URL}"; \n`+
+            `const APIMAP_DEVELOPER_URL="${process.env.APIMAP_DEVELOPER_URL}";\n`+
+            `const APIMAP_SUPPORT="${process.env.APIMAP_SUPPORT}";\n`+
+            `document.title="${process.env.APIMAP_TITLE}";`
         )
     }
 )
@@ -55,6 +56,11 @@ app.get("/content/metadata-options.json", function(req, res) {
     }
 )
 
+app.get("/content/search-options.json", function(req, res) {
+        res.sendFile(path.join(__dirname + '/dist/content/search-options.json'));
+    }
+)
+
 app.get('/*', function(req, res) {
         res.sendFile(path.join(__dirname + '/dist/index.html'));
     }
@@ -62,5 +68,8 @@ app.get('/*', function(req, res) {
 
 const server = http.createServer(app)
 
-server.listen(8080, "0.0.0.0");
-console.log(`Running on http://0.0.0.0:8080`)
+const hostname = "0.0.0.0"
+const port = 8080
+
+server.listen(port, hostname);
+console.log('Running on ' + hostname + ":" + port)

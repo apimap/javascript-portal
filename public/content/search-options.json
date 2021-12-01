@@ -1,0 +1,23 @@
+{
+  "searchCategories": [
+    {
+      "label": "Name",
+      "value": "name",
+      "description": "Name that contains parts of any of the words in the search phrase",
+      "query": "[field]"
+    },
+    {
+      "label": "Description",
+      "value": "description",
+      "description": "Description that contains parts of any of the words in the search phrase",
+      "query": "[field]"
+    },
+    {
+      "label": "System Identifier",
+      "value": "system identifier",
+      "description": "System identifier that contains parts of any of the words in the search phrase",
+      "query": "[field]"
+    }
+  ]
+}
+

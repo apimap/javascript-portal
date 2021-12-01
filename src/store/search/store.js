@@ -1,5 +1,3 @@
-import {mapResourceModules} from "@reststate/vuex";
-
 export const ADD_METADATA_FILTER = 'ADD_METADATA_FILTER';
 export const REMOVE_METADATA_FILTER = 'REMOVE_METADATA_FILTER';
 export const ADD_CLASSIFICATION_FILTER = 'ADD_CLASSIFICATION_FILTER';
@@ -7,8 +5,9 @@ export const REMOVE_CLASSIFICATION_FILTER = 'REMOVE_CLASSIFICATION_FILTER';
 export const SELECT_TAXONOMY = 'SELECT_TAXONOMY';
 export const DESELECT_TAXONOMY = 'DESELECT_TAXONOMY';
 export const CLEAR_ALL_SELECTIONS = 'CLEAR_ALL_SELECTIONS';
-
-import api from "../client.js";
+export const CLEAR_RESULTS = 'CLEAR_RESULTS';
+export const SET_RESULTS = 'SET_RESULTS';
+export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 
 export default {
     state: {
@@ -18,20 +17,31 @@ export default {
     },
     getters: {
         filters: state => {
-            return state.filters;
+            let returnValue = {};
+            state.filters.forEach(f => {
+                if(returnValue['filter' + f.key] === undefined){ returnValue['filter' + f.key] = f.value; }
+                else{ returnValue['filter' + f.key] = returnValue['filter' + f.key] + "," + f.value; }
+            })
+            return returnValue;
         },
         filterContainsMetadata: state => payload => {
             return state.filters.some(e => e['key'] === payload.key && e['value'] === payload.value);
         },
         filterContainsClassification: state => payload => {
-            return state.filters.some(e => e['key'] === "[classification][" + state.taxonomy.attributes.nid + "]" && e['value'] === payload);
+            return state.filters.some(e => e['key'] === "[classification][" + state.taxonomy.nid + "]" && e['value'] === payload);
         },
         isSelectedTaxonomy: state => payload => {
-            return state.taxonomy.id === payload.id;
+            return state.taxonomy.nid === payload.nid;
+        },
+        results: state => {
+            return state.results;
         }
     },
     mutations: {
-        [CLEAR_ALL_SELECTIONS](state, payload){
+        [CLEAR_FILTERS](state){
+            state.filters = [];
+        },
+        [CLEAR_ALL_SELECTIONS](state){
             state.filters = [];
             state.results = [];
         },
@@ -45,11 +55,11 @@ export default {
         },
         [ADD_CLASSIFICATION_FILTER](state, payload) {
             // Payload: {urn: string}
-            state.filters.push({ key: "[classification][" + state.taxonomy.attributes.nid + "]", value: payload });
+            state.filters.push({ key: "[classification][" + state.taxonomy.nid + "]", value: payload });
         },
         [REMOVE_CLASSIFICATION_FILTER](state, payload) {
             // Payload: {urn: string}
-            state.filters.splice(state.filters.findIndex( (e) => e.key === "[classification][" + state.taxonomy.attributes.nid + "]" && e.value === payload ), 1);
+            state.filters.splice(state.filters.findIndex( (e) => e.key === "[classification][" + state.taxonomy.nid + "]" && e.value === payload ), 1);
         },
         [SELECT_TAXONOMY](state, payload) {
             // Payload: {taxonomy object}
@@ -58,6 +68,19 @@ export default {
         [DESELECT_TAXONOMY](state) {
             // Payload: none
             state.taxonomy = undefined;
+        },
+        [CLEAR_RESULTS](state){
+            state.results = [];
+        },
+        [SET_RESULTS](state, payload) {
+
+            // Payload: {taxonomy object}
+            if(payload === undefined){
+                state.results = [];
+            }else{
+                if ('_jv' in payload) { delete payload._jv; }
+                state.results = payload;
+            }
         },
     },
     actions: {
@@ -81,12 +104,15 @@ export default {
         },
         CLEAR_ALL_SELECTIONS({commit}){
             commit(CLEAR_ALL_SELECTIONS);
+        },
+        CLEAR_RESULTS({commit}){
+            commit(CLEAR_RESULTS);
+        },
+        SET_RESULTS({commit}, payload){
+            commit(SET_RESULTS, payload);
+        },
+        CLEAR_FILTERS({commit}){
+            commit(CLEAR_FILTERS);
         }
-    },
-    modules: {
-        ...mapResourceModules({
-            names: ["apiVersionMetadata", "searchResult", "metadata:element", "taxonomyClassifications", "version:collection", "version:element"],
-            httpClient: api,
-        }),
-    },
+    }
 }

@@ -1,10 +1,11 @@
-FROM node:lts-alpine3.14
+FROM node:17-alpine
 MAINTAINER apimap.io
-RUN addgroup -S vue && adduser -S vue -G vue
+RUN addgroup --system vue && adduser --system vue --ingroup vue --no-create-home
 USER vue:vue
-ENV API_URL="http://localhost"
-ENV DEVELOPER_URL="http://localhost"
-ENV TITLE="Apimap.io"
+ENV APIMAP_API_URL="http://localhost"
+ENV APIMAP_DEVELOPER_URL="http://localhost"
+ENV APIMAP_TITLE="Apimap.io"
+ENV APIMAP_SUPPORT=""
 WORKDIR /app
 COPY package.json /app
 COPY server.js /app

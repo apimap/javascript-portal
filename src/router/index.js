@@ -1,13 +1,16 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import { Paths } from "./paths";
+import {Paths} from "./paths";
 
 //
-const Startpage = () => import("@/views/Startpage");
+const Startpage = () => import("@/pages/Startpage/Startpage");
 
 // Search
-const Search = () => import("@/views/Search");
+const SearchResults = () => import("@/pages/Search/SearchResults");
+
+// Api
+const Api = () => import("@/pages/Api/Api");
 
 Vue.use(Router);
 
@@ -19,34 +22,48 @@ export default new Router({
             name: Paths.root.name,
             component: Startpage,
             meta: {
-                breadcrumb: [{ name: Paths.root.name }],
+                breadcrumb: [
+                    {name: Paths.root.name}
+                ],
             },
         },
         {
             path: Paths.search.url,
             name: Paths.search.name,
-            component: Search,
+            component: SearchResults,
             meta: {
                 breadcrumb: [
-                    { name: Paths.root.name, link: Paths.root.url },
-                    { name: Paths.search.name },
+                    {name: Paths.root.name, link: Paths.root.url},
+                    {name: Paths.search.name}
                 ],
             },
+            children: [
+                {
+                    path: ":api",
+                    component: Api,
+                    meta: {
+                        breadcrumb: [
+                            {name: Paths.root.name, link: "/"},
+                            {name: Paths.search.name }
+                        ],
+                    },
+                },
+            ]
         },
         {
             path: "*",
             redirect: Paths.root.url,
         }
-  ],
-  scrollBehavior: function (to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else if (to.hash) {
-      return {
-        selector: to.hash
-      }
-    } else {
-      return {x:0, y:0}
-    }
-  },
+    ],
+    scrollBehavior: function (to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else if (to.hash) {
+            return {
+                selector: to.hash
+            }
+        } else {
+            return {x: 0, y: 0}
+        }
+    },
 });

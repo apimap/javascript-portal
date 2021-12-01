@@ -1,11 +1,10 @@
-export const Paths =
-{
+export const Paths = {
 	root: {
 		url: "/",
-		name: "Startpage"
+		name: "Home"
 	},
 	search: {
-		url:  "/search",
-		name: "Search"
+		url:  "/results",
+		name: "Search Results"
 	}
 }

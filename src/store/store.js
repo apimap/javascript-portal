@@ -8,9 +8,9 @@ import content from '@/store/content/store.js';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: {
-    api,
-    search,
-    content
-  }
+    modules: {
+        api,
+        search,
+        content
+    }
 });

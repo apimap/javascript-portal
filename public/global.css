@@ -1,111 +1,105 @@
 /*
  H*
  */
-h1 {
-  font-size: 4em;
-  font-family: HelveticaNeue-Light, Segoe UI Light, Helvetica,
-    Arial, sans-serif;
-  line-height: 1.1em;
-  font-weight: 300;
 
-  margin-top: 0.6em;
-  margin-bottom: 0.3em;
+h1 {
+    font-size: 2.4em;
+    font-weight: lighter;
+    line-height: 1.1em;
 }
 
 h2 {
-  font-size: 2.8em;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300;
-  margin-top: 0.6em;
-  margin-bottom: 1em;
+    font-size: 1.8em;
+    font-weight: lighter;
+    line-height: 1.1em;
 }
 
 h3 {
-  font-size: 1.8em;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300;
-  margin-top: 0.6em;
-  margin-bottom: 0.3em;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    line-height: 1.2em;
+    font-weight: bold;
 }
 
 h4 {
-  font-size: 1.4em;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
-  margin-top: 1.8em;
-  font-weight: 300;
-  margin-bottom: 0.6em;
-}
-
-h5 {
-  font-size: 1em;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
-  margin-top: 1em;
-  margin-bottom: 0.6em;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    line-height: 1.1em;
+    font-weight: bold;
 }
 
 /*
-p
+ p
  */
 
 p.explainer {
-  line-height: 1.4em;
-  font-size: 1.2em;
+    line-height: 1.4em;
+    font-size: 1.2em;
 }
 
 /*
-   Input
-*/
-
-/*
- Buttons
- */
-button.none {
-  background: none;
-  color: var(--primary-link-color);
-  border: 0em;
-  font-size: 1em;
-  font-weight: bold;
-  outline: none;
-}
-
-/*
- Links
- */
-a {
-  color: var(--primary-link-color);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.clean {
-  text-decoration: none;
-}
-
-a.secondary-color {
-  color: var(--secondary-color);
-}
-
-/*
-    Page
+ Page
  */
 
 body {
-  background-color: var(--primary-background-color);
-  color: var(--primary-color);
-  margin: 0;
-  box-sizing: border-box;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  text-align: left;
-  margin-top: 2em;
+pre {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    white-space: pre-wrap;
+}
+
+html {
+    height: 100vh;
+}
+
+/*
+ Global
+ */
+
+.copy {
+    cursor: copy;
+}
+
+.button {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+a, .link {
+    color: var(--link-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover, .link:hover {
+    text-decoration: underline;
+    text-decoration-color:  var(--hover-link-color);
+    text-decoration-thickness: 0.2em;
+}
+
+a.light {
+    color: var(--light-link-color);
+}
+
+a.light:hover {
+    color: var(--light-hover-link-color);
+}
+
+/*
+ App
+ */
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    padding: 0;
+    height: inherit;
 }
