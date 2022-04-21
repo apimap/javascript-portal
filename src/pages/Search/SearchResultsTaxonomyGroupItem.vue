@@ -69,8 +69,9 @@ export default {
   padding-bottom: 1em;
   margin-bottom: 1em;
   font-size: 1.2em;
-  overflow: clip;
   max-height: 5em;
+  white-space: normal;
+  line-height: 1.2em;
 }
 
 p {
@@ -81,6 +82,8 @@ p {
   padding-top: 0.2em;
   padding-bottom: 0.5em;
   font-size: 2em;
+  white-space: normal;
+  line-height: 1.1em;
 }
 
 ul {
