@@ -9,7 +9,7 @@
     <div class="metadata">
       <ul>
         <li>Release status: {{ api['release status'] }}</li>
-        <li>Latest version: {{ api['api version'] }}</li>
+        <li>Version: {{ api['api version'] }}</li>
       </ul>
     </div>
   </div>
@@ -72,6 +72,8 @@ export default {
   max-height: 5em;
   white-space: normal;
   line-height: 1.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 p {

@@ -1,6 +1,7 @@
 <template>
   <div class="result-bar-version-selection">
     <h3>Available API Versions</h3>
+    <LoadingIndicator :visible="this.displayLoading"/>
     <ul>
       <li v-for="version in versions"
           :key="version.version"
@@ -15,12 +16,16 @@
 
 <script>
 
+import LoadingIndicator from "@/components/Elements/LoadingIndicator";
 import selectedIcon from "@/assets/icons/option-selected.svg";
 
 export default {
   name: "ApiViewVersionSelection",
   props: {
     api: Object
+  },
+  components: {
+    LoadingIndicator
   },
   methods:{
     selectVersion(version){
@@ -32,7 +37,8 @@ export default {
     return {
       versions: [],
       currentVersion: String,
-      selectedIcon
+      selectedIcon,
+      displayLoading: true
     }
   },
   watch: {
@@ -43,6 +49,7 @@ export default {
         if(this.versions.length == 1){
           this.selectVersion(this.versions[0]);
         }
+        this.displayLoading = false;
       })
     }
   }
@@ -107,12 +114,12 @@ li {
   padding-right: 0.8em;
   padding-top: 0.4em;
   padding-bottom: 0.4em;
-  margin-right: 1em;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 14em;
   overflow: hidden;
   text-decoration: underline;
+  margin-bottom: 0.6em;
+  width: 8em;
 }
 
 li:hover{

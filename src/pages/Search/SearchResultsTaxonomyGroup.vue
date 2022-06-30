@@ -78,6 +78,7 @@ export default {
 }
 
 .content {
+  flex-wrap: wrap;
   display: flex;
   flex-direction: row;
   justify-content: left;

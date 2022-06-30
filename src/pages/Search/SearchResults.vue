@@ -6,12 +6,12 @@
            @closeApi="closeCallback"
            :api="selectedApi"/>
       <SearchField class="element"/>
-      <TaxonomyFilterMenu class="element"/>
       <ResultLayout>
         <template v-slot:menu>
           <MetadataFilterMenu/>
         </template>
         <template v-slot:results>
+          <TaxonomyFilterMenu class="element"/>
           <SearchResultsList @apiSelected="setApi"/>
         </template>
       </ResultLayout>
@@ -76,6 +76,8 @@ export default {
         this.$store.dispatch('jv/get', ["classification", {params: this.$store.getters.filters}]).then((data) => {
           this.$store.dispatch(SET_RESULTS, data);
         })
+      }else{
+        this.$store.dispatch(SET_RESULTS, {});
       }
     }
   },

@@ -38,8 +38,7 @@ import {
   ADD_CLASSIFICATION_FILTER,
   CLEAR_FILTERS,
   REMOVE_CLASSIFICATION_FILTER,
-  SELECT_TAXONOMY,
-  UNSELECT_TAXONOMY
+  SELECT_TAXONOMY, SET_RESULTS
 } from "@/store/search/store";
 import { LOAD_METADATA_OPTIONS } from "@/store/content/store";
 
@@ -65,6 +64,7 @@ export default {
   methods: {
     clearAll: function (){
       this.$store.dispatch(CLEAR_FILTERS);
+      this.$store.dispatch(SET_RESULTS, {});
     },
     toggleClassification: function (object) {
       if (this.$store.getters.filterContainsClassification(object.urn)) {

@@ -1,31 +1,36 @@
 <template>
   <div class="api-view">
-    <ApiViewVersionSelection :api="api" @versionSelected="versionCallback"/>
-    <div class="heading">
-      <h1>{{ api.name }}</h1>
-      <div class="direct-link">DIRECT LINK: {{ link }} <span class="copyUrl copy" @click="copyToClipboard">COPY LINK</span></div>
-      <p>{{ api.description }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.description)"/></p>
-      <ApiViewSelection />
-      <ApiViewMetadata :version="version" v-if="version"/>
+    <ApiViewVersionSelection :api="api" @versionSelected="versionCallback" class="options"/>
+    <div class="content">
+      <LoadingIndicator :visible="this.displayLoading"/>
+      <h1 v-if="this.displayContent">{{ api.name }}</h1>
+      <div class="direct-link" v-if="this.displayContent">
+        DIRECT LINK: {{ link }} <span class="copyUrl copy" @click="copyToClipboard">COPY LINK</span>
+      </div>
+      <p v-if="this.displayContent" class="description">{{ api.description }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.description)"/></p>
+      <ApiViewSelection/>
+      <ApiViewMetadata :version="this.version" v-if="this.version"/>
     </div>
   </div>
 </template>
 
 <script>
 
+import LoadingIndicator from "@/components/Elements/LoadingIndicator";
+
 import copyIcon from "@/assets/elements/copy-to-clipboard-element.svg";
 
 import ApiViewVersionSelection from "@/pages/Api/ApiViewVersionSelection";
 import ApiViewMetadata from "@/pages/Api/ApiViewMetadata";
 import ApiViewSelection from "@/pages/Api/ApiViewSelection";
-import ApiViewClassifications from "@/pages/Api/ApiViewClassifications";
 
 export default {
   name: "ApiView",
   components: {
     ApiViewSelection,
     ApiViewVersionSelection,
-    ApiViewMetadata
+    ApiViewMetadata,
+    LoadingIndicator
   },
   props: {
     api: Object
@@ -44,6 +49,12 @@ export default {
   computed: {
     link: function(){
       return window.location.href;
+    },
+    displayLoading: function(){
+      return this.api.name === undefined;
+    },
+    displayContent: function(){
+      return this.api.name !== undefined;
     }
   },
   data: function() {
@@ -57,14 +68,23 @@ export default {
 
 <style scoped>
 
+.options {
+    width: 14em;
+}
+
 h1 {
   padding-bottom: 0;
   margin-bottom: 0;
 }
 
+.description {
+  line-height: 1.4em;
+}
+
 .direct-link {
   font-size: 0.8em;
   font-weight: bolder;
+  margin-top: 0.4em;
 }
 
 .api-view {
@@ -74,11 +94,19 @@ h1 {
   height: 100%;
 }
 
-.heading {
+.content {
   width: 60em;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.heading > p {
+.content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.content > p {
   margin-top: 1em;
   margin-bottom: 1em;
   padding-top: 2em;

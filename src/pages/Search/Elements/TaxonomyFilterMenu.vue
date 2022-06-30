@@ -1,7 +1,6 @@
 <template>
   <div class="taxonomy-filter-menu">
     <div class="heading button" @click.stop="toggleVisibility">
-      <h4>Taxonomy filter</h4>
       <div class="toggle button" @click.stop="toggleVisibility" v-show="!visible">
         <h3>Show Taxonomy Filter</h3>
       </div>
@@ -26,7 +25,7 @@ export default {
   },
   data: function() {
     return {
-      visible: false
+      visible: true
     }
   },
   methods: {
@@ -45,7 +44,6 @@ export default {
 
 h3 {
   width: min-content;
-  border: 1px solid var(--box-text-color);
   white-space: nowrap;
   padding-left: 1em;
   padding-right: 1em;
@@ -56,9 +54,7 @@ h3 {
 
 .taxonomy-filter-menu {
   width: 100%;
-  background-color: var(--box-background-color);
   border-radius: 0.2em;
-  color: var(--box-text-color);
 }
 
 .heading {

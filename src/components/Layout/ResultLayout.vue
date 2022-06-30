@@ -32,7 +32,7 @@ export default {
 }
 
 .results {
-  width: max-content;
+  width: 80%;
   flex: 1 0 auto;
 }
 
