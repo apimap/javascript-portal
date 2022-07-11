@@ -1,6 +1,6 @@
 {
   "name": "apimap-portal",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build --mode production",
@@ -9,20 +9,17 @@
     "clean": "rm -rf node_modules",
     "start": "node server.js"
   },
-  "devDependencies": {
-    "uglifyjs-webpack-plugin": "2.2.0"
-  },
   "dependencies": {
-    "@apimap/input-core": "2.0.0",
-    "@apimap/layout-core": "2.0.2",
-    "@apimap/the-breadcrumbs": "^2.0.1",
-    "@vue/cli-service": "5.0.4",
-    "axios": "0.26.1",
-    "express": "4.17.3",
+    "@apimap/input-core": "2.0.1",
+    "@apimap/layout-core": "2.0.3",
+    "@apimap/the-breadcrumbs": "2.0.2",
+    "@vue/cli-service": "5.0.8",
+    "axios": "0.27.2",
+    "express": "4.18.1",
     "jsonapi-vuex": "4.5.3",
-    "vue": "2.6.14",
+    "vue": "2.7.4",
     "vue-router": "3.5.3",
-    "vue-template-compiler": "2.6.14",
+    "vue-template-compiler": "2.7.4",
     "vuex": "3.6.2"
   }
 }

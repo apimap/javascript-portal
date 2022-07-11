@@ -5,7 +5,7 @@ module.exports = {
     configureWebpack: {
         resolve: {
             fallback: {
-                "vm": require.resolve("vm-browserify")
+                "vm": false
             }
         }
     }

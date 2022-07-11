@@ -1,6 +1,6 @@
-FROM node:17-alpine
+FROM node:18-bullseye-slim
 MAINTAINER apimap.io
-RUN addgroup --system vue && adduser --system vue --ingroup vue --no-create-home
+RUN adduser --uid 467 --system --group vue
 USER vue:vue
 ENV APIMAP_API_URL="http://localhost"
 ENV APIMAP_DEVELOPER_URL="http://localhost"
