@@ -41,6 +41,6 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: apimap/portal:latest,apimap/portal:2.0.3
+          tags: apimap/portal:latest,apimap/portal:2.1.0
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
