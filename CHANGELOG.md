@@ -2,6 +2,9 @@ Changelog
 ===
 
 ### 02.08.2022
+- Fixed missing results updates
+
+### 02.08.2022
 - Updated classification selection and GUI 
 
 ### 21.07.2022

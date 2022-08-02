@@ -36,6 +36,7 @@ import TheBreadcrumbs from "@apimap/the-breadcrumbs";
 import Footer from "@/components/Elements/Footer";
 import addApiElement from "@/assets/elements/add-api-element.svg";
 import ResultLayout from "@/components/Layout/ResultLayout";
+import {SET_RESULTS} from "@/store/search/store";
 
 export default {
   name: "SearchResults",
