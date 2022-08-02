@@ -6,7 +6,7 @@ Apimap.io Portal
 This is the home of the Apimap.io project, a freestanding solution to keep track of all functionality a company
 provides through an API. It is a push based system, connected with your build pipeline or manually updated using our CLI.
 
-> **Application programming interface (API)**: Point of functional integration between two or more systems connected 
+> **Application programming interface (API)**: Point of functional integration between two or more systems connected
 > through commonly known standards
 
 **Why is this project useful?** Lost track of all the API functionality provided inside your organization? Don't want
@@ -19,17 +19,20 @@ This project is a part of the Open Source initiatives in Telenor. Read more abou
 
 ![TelenorLogo](doc/telenor.png)
 
+
 ## Table of Contents
 
 * [Project Components](#project-components)
 * [Run](#run)
 * [Contributing](#contributing)
+* [Screenshots](#screenshots)
+
 
 I want to know more of the technical details and implementation guides: [DEVELOPER.md](DEVELOPER.md)
 
 ## Project Components
 ___
-This is a complete software solution consisting of a collection of freestanding components. Use only the components you 
+This is a complete software solution consisting of a collection of freestanding components. Use only the components you
 find useful, create the rest to custom fit your organization.
 
 - A **Developer Portal** with wizards and implementation information
@@ -43,40 +46,42 @@ ___
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/apimap)](https://artifacthub.io/packages/search?repo=apimap)
 
 We primarily recommend the following two ways of running the applications:
-- Locally using bootRun
+- Locally using npm
 - From our published Docker image
 
-### Locally using bootRun
+### Locally using npm
 
-Based on Spring Boot, all the usual targets exist. The easiest way to get started is using **bootRun** 
+Based on Vue, all the usual targets exist. The easiest way to get started is using **start**
 
-> gradlew bootRun
+> npm run build
+> npm run start
 
 #### From our published Docker image
 
-It is possible to use the image "as-is", although this will NOT keep any content after shutdown/reboot.
+It is possible to use the image "as-is", with a customized metadata-options.json and search-options.json file.
 
-> docker run -p 8080:8080 apimap/api
+> docker run -e APIMAP_API_URL="http://localhost" -e APIMAP_DEVELOPER_URL="http://localhost" -e APIMAP_TITLE="Apimap.io" -e APIMAP_SUPPORT="Visit github for support" -p 8080:8080 apimap/portal
 
-#### Requirements
+#### Requirements`
 
-Each node need a persistent storage volume to keep data between restarts. Default location is '/var/apimap'
-
-```shell script
-docker volume create apimap-data
-```
+A custom metadata-options.json file is required to have content. This must match the file used in the Portal service.
 
 #### Configuring the Docker Image
 
-We love "build once deploy anywhere" and all configuration is done using the Spring configuration properties system.
+We love "build once deploy anywhere" and all configuration is done using environment variables and file mounting.
 
-You can find our default configuration in the application.yaml file, and we recommend that you override using environment variables.
-More information about Spring and the configuration system is available at [docs.spring.io](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config)
-
-Setting faq and support urls using **JSON Application Properties**
-> docker run -p 8080:8080 --env SPRING_APPLICATION_JSON='{"apimap":{"metadata":{"copyright": "your organization", "faq":"your url", "support":"your url"}}}' apimap/api
+You can find our default configuration in the Dockerfile file, and we recommend that you override using environment variables.
 
 ## Contributing
 ___
 
 Read [howto contribute](CONTRIBUTING.md) to this project.
+
+## Screenshots
+___
+
+### Startpage
+![Startpage](doc/screenshot1.png)
+
+### Search results
+![SearchResults](doc/screenshot2.png)
