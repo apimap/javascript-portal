@@ -7,7 +7,6 @@
       <Option :title="option.label"
               :description="option.description"
               :selected="$store.getters.filterContainsMetadata({key: option.filter, value: option.value})"
-              :size="size"
               @toggleOption="toggleOption"
               :option="option"/>
     </div>

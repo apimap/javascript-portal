@@ -1,16 +1,13 @@
 <template>
   <CenterLayout width='60em'>
-    <TheBreadcrumbs/>
-    <div class="startpage">
       <CenterLayout style="height:100%">
         <SearchField class="search-field"/>
         <h2>Browse by Taxonomy</h2>
         <TaxonomyFilter class="element" />
         <MetadataFilter class="element" />
-        <div class="search-button button" @click="search">BROWSE</div>
+        <div class="action-button button" @click="search">BROWSE</div>
       </CenterLayout>
       <Footer/>
-    </div>
   </CenterLayout>
 </template>
 
@@ -19,12 +16,11 @@ import TaxonomyFilter from "@/pages/Startpage/Elements/TaxonomyFilter";
 import MetadataFilter from "@/pages/Startpage/Elements/MetadataFilter";
 import Footer from "@/components/Elements/Footer";
 
-import {CenterLayout, VerticalStackLayout} from "@apimap/layout-core";
+import {CenterLayout} from "@apimap/layout-core";
 
-import {CLEAR_RESULTS, CLEAR_ALL_SELECTIONS, SELECT_TAXONOMY, SET_RESULTS} from "@/store/search/store";
+import {CLEAR_RESULTS, SET_RESULTS} from "@/store/search/store";
 import {Paths} from "@/router/paths";
 import SearchField from "@/components/Elements/SearchField";
-import TheBreadcrumbs from "@apimap/the-breadcrumbs";
 
 export default {
   name: "Startpage",
@@ -33,9 +29,7 @@ export default {
     MetadataFilter,
     TaxonomyFilter,
     CenterLayout,
-    VerticalStackLayout,
-    Footer,
-    TheBreadcrumbs
+    Footer
   },
   watch: {
     '$store.state.search.results': function() {
@@ -43,9 +37,6 @@ export default {
     }
   },
   methods: {
-    redirectToProducer: function(){
-      window.location.href = APIMAP_DEVELOPER_URL
-    },
     search: function(){
       this.$store.dispatch(CLEAR_RESULTS);
 
@@ -60,31 +51,14 @@ export default {
 
 <style scoped>
 
-.search-button {
-  border: 2px solid var(--search-button-border-color);
-  background-color: var(--search-button-background-color);
-  color: var(--search-button-text-color);
-  font-size: 1.2em;
-  padding-top: 1em;
-  width: 20em;
-  padding-bottom: 1em;
-  margin: auto;
-  user-select: none;
-}
-
-.search-button:hover {
-  background-color: var(--search-button-selected-background-color);
-  color: var(--search-button-selected-text-color);
-}
-
 .element {
   margin-bottom: 3em;
   user-select: none;
 }
 
 .search-field {
-  padding-top: 4em;
-  padding-bottom: 8em;
+  padding-top: 2em;
+  padding-bottom: 4em;
 }
 
 </style>

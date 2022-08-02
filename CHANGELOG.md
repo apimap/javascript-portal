@@ -1,6 +1,15 @@
 Changelog
 ===
 
+### 02.08.2022
+- Updated classification selection and GUI 
+
+### 21.07.2022
+- Removed clear all button
+- Added metadata and changelog display
+- Added API documentation rating
+- Select level 0 and level 1 upon filtering by taxonomy
+
 ### 11.07.2022
 - Now using debian base image
 - Updated dependencies

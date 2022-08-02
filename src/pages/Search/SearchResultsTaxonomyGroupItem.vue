@@ -3,13 +3,15 @@
     <div class="title">{{ api.name }}</div>
     <div class="description">{{ api.description }}</div>
     <div>
-      <div @click.stop="copyToClipboard(api.name)" class="copy">Copy Link</div>
+      <div @click.stop="copyToClipboard(api.name)" class="copy button">Copy Link</div>
       <a :href="api.codeRepository" v-if="api.codeRepository">View Source Code</a>
     </div>
     <div class="metadata">
       <ul>
         <li>Release status: {{ api['release status'] }}</li>
         <li>Version: {{ api['api version'] }}</li>
+        <li>Interface: {{ api['interface specification'] }}</li>
+        <li>Architecture layer: {{ api['architecture layer'] }}</li>
       </ul>
     </div>
   </div>
@@ -37,15 +39,25 @@ export default {
 <style scoped>
 
 .copy {
-  background-color: var(--button-dark-background-color);
-  color: var(--button-dark-text-color);
-  border: 1px solid var(--button-dark-border-color);
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
-  text-align: center;
+  white-space: break-spaces;
+  border: 1px solid var(--unselected-item-border-color);
   border-radius: 0.2em;
-  font-weight: bolder;
+  background-color: var(--unselected-item-background-color);
+  color: var(--unselected-item-text-color);
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
   font-size: 0.8em;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.copy:hover {
+  text-decoration: underline;
+  border: 1px solid var(--selected-item-border-color);
+  color: var(--selected-item-text-color);
+  background-color: var(--selected-item-background-color);
 }
 
 .search-results-taxonomy-group-item{
@@ -91,15 +103,13 @@ p {
 ul {
   list-style: none;
   padding: 0;
-  margin-top: 0.4em;
+  margin-top: 1.4em;
   margin-bottom: 0.6em;
 }
 
 li {
   font-size: 0.8em;
   padding-right: 0.8em;
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
   margin-right: 1em;
 }
 

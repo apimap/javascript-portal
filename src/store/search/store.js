@@ -12,6 +12,7 @@ export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 export default {
     state: {
         filters: [],
+        classifications: [],
         taxonomy: {},
         results: []
     },
@@ -23,6 +24,9 @@ export default {
                 else{ returnValue['filter' + f.key] = returnValue['filter' + f.key] + "," + f.value; }
             })
             return returnValue;
+        },
+        classifications: state => {
+            return state.classifications;
         },
         filterContainsMetadata: state => payload => {
             return state.filters.some(e => e['key'] === payload.key && e['value'] === payload.value);
@@ -44,6 +48,7 @@ export default {
         [CLEAR_ALL_SELECTIONS](state){
             state.filters = [];
             state.results = [];
+            state.classifications = [];
         },
         [ADD_METADATA_FILTER](state, payload) {
             // Payload: {key: string, value: string}
@@ -56,10 +61,12 @@ export default {
         [ADD_CLASSIFICATION_FILTER](state, payload) {
             // Payload: {urn: string}
             state.filters.push({ key: "[classification][" + state.taxonomy.nid + "]", value: payload });
+            state.classifications.push(payload);
         },
         [REMOVE_CLASSIFICATION_FILTER](state, payload) {
             // Payload: {urn: string}
-            state.filters.splice(state.filters.findIndex( (e) => e.key === "[classification][" + state.taxonomy.nid + "]" && e.value === payload ), 1);
+            state.filters = state.filters.filter((e) => e.key === "[classification][" + state.taxonomy.nid + "]" && e.value !== payload );
+            state.classifications = state.classifications.filter((e) => e !== payload );
         },
         [SELECT_TAXONOMY](state, payload) {
             // Payload: {taxonomy object}

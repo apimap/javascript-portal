@@ -1,23 +1,28 @@
 <template>
-  <CenterLayout width='80%'>
-    <TheBreadcrumbs/>
-    <div class="search-results">
-      <Api v-show="api"
-           @closeApi="closeCallback"
-           :api="selectedApi"/>
-      <SearchField class="element"/>
-      <ResultLayout>
-        <template v-slot:menu>
-          <MetadataFilterMenu/>
-        </template>
-        <template v-slot:results>
-          <TaxonomyFilterMenu class="element"/>
-          <SearchResultsList @apiSelected="setApi"/>
-        </template>
-      </ResultLayout>
-      <Footer/>
+  <div class="search-results">
+    <div class="heading">
+      <CenterLayout width='80%' class="heading-container">
+        <div class="title">{{ title }} <a :href="developerPortalUrl"><img :src="addApiElement" alt="Add a new API to the catalog"/></a></div>
+        <div class="center-item"></div>
+        <SearchField class="search-field"/>
+      </CenterLayout>
     </div>
-  </CenterLayout>
+    <CenterLayout width='80%'>
+        <Api v-show="api"
+             @closeApi="closeCallback"
+             :api="selectedApi"/>
+        <ResultLayout v-bind:class="[ api !== undefined ? 'noscroll' : '' ]">
+          <template v-slot:menu>
+            <TaxonomyFilterMenu class="element"/>
+          </template>
+          <template v-slot:results>
+            <MetadataFilterMenu/>
+            <SearchResultsList @apiSelected="setApi"/>
+            <Footer/>
+          </template>
+        </ResultLayout>
+    </CenterLayout>
+  </div>
 </template>
 
 <script>
@@ -29,12 +34,8 @@ import Api from "@/pages/Api/Api";
 import {CenterLayout} from "@apimap/layout-core";
 import TheBreadcrumbs from "@apimap/the-breadcrumbs";
 import Footer from "@/components/Elements/Footer";
-
+import addApiElement from "@/assets/elements/add-api-element.svg";
 import ResultLayout from "@/components/Layout/ResultLayout";
-
-import {LOAD_METADATA_OPTIONS, LOAD_SEARCH_OPTIONS} from "@/store/content/store";
-import {CLEAR_ALL_SELECTIONS, CLEAR_RESULTS, SELECT_TAXONOMY, SET_RESULTS} from "@/store/search/store";
-import {Paths} from "@/router/paths";
 
 export default {
   name: "SearchResults",
@@ -66,7 +67,8 @@ export default {
   },
   data: function () {
     return {
-      api: undefined
+      api: undefined,
+      addApiElement
     };
   },
   watch: {
@@ -82,6 +84,12 @@ export default {
     }
   },
   computed: {
+    title () {
+      return APIMAP_TITLE;
+    },
+    developerPortalUrl() {
+      return APIMAP_DEVELOPER_URL;
+    },
     emptyFilters: {
       get() {
         return this.$store.getters.filters.length <= 0;
@@ -102,12 +110,47 @@ export default {
 
 <style scoped>
 
-.search-results{
-  padding-bottom: 4em;
+.search-field{
+  margin-right: 2em;
+  width: auto;
 }
 
-.element{
-  margin-bottom: 2em;
+img{
+  vertical-align: middle;
+}
+
+.title{
+  width: 16em;
+  text-align: left;
+  line-height: 1.3em;
+  font-size: 1.6em;
+  color: #5c5470;
+  overflow: clip;
+  white-space: nowrap;
+}
+
+.center-item{
+  flex-grow: 1;
+}
+
+.heading-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: stretch;
+}
+
+.heading{
+  width: 100%;
+  height: 44px;
+  border-bottom: 1px solid var(--box-border-color);
+  background-color: white;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  padding-top: 10px;
+  margin-right: 2em;
+  z-index: 10;
 }
 
 </style>

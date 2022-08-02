@@ -1,4 +1,4 @@
-import client from "../client.js";
+import client from "@/clients/rest-client.js";
 
 import { jsonapiModule } from 'jsonapi-vuex'
 

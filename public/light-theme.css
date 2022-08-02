@@ -45,6 +45,6 @@
     --box-text-color: white;
 
     /* tooltip */
-    --tooltip-background-color: #5C5470;
+    --tooltip-background-color: #5C5470cc;
     --tooltip-text-color: white;
 }

@@ -71,6 +71,50 @@ html {
     white-space: nowrap;
 }
 
+.filter-button {
+    white-space: break-spaces;
+    position: relative;
+    border: 1px solid var(--unselected-item-border-color);
+    border-radius: 0.2em;
+    background-color: var(--unselected-item-background-color);
+    color: var(--unselected-item-text-color);
+    text-align: center;
+    text-overflow: ellipsis;
+    padding: 0.6em 1.4em;
+    font-size: 0.8em;
+    font-weight: bolder;
+}
+
+.filter-button:hover {
+    text-decoration: underline;
+    border: 1px solid var(--selected-item-border-color);
+    color: var(--selected-item-text-color);
+    background-color: var(--selected-item-background-color);
+}
+
+.filter-button.selected {
+    border: 1px solid var(--selected-item-border-color);
+    color: var(--selected-item-text-color);
+    background-color: var(--selected-item-background-color);
+}
+
+.action-button {
+    border: 2px solid var(--search-button-border-color);
+    background-color: var(--search-button-background-color);
+    color: var(--search-button-text-color);
+    font-size: 1.2em;
+    padding-top: 1em;
+    width: 20em;
+    padding-bottom: 1em;
+    margin: auto;
+    user-select: none;
+}
+
+.action-button:hover {
+    background-color: var(--search-button-selected-background-color);
+    color: var(--search-button-selected-text-color);
+}
+
 a, .link {
     color: var(--link-color);
     text-decoration: none;

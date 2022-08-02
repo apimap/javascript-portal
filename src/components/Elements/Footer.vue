@@ -2,19 +2,19 @@
   <div class="footer">
     <VerticalStackLayout>
       <div class="left">
-        <p>Apimap.io</p>
+        Apimap.io
         <ul>
           <li><a href="https://github.com/apimap" target="_blank">Contribute</a></li>
           <li><a href="https://github.com/apimap" target="_blank">Report a bug</a></li>
         </ul>
         <p class="small"><a href="http://www.apache.org/licenses/" target="_blank">Apache License, Version 2.0</a></p>
+        <p class="version">Version {{ version }} created {{ created }}</p>
       </div>
       <div class="right">
         <h3>HELP AND SUPPORT</h3>
         <p>{{ support }}</p>
         <h3>API DEVELOPER</h3>
         <p>Make a new API available using the developer portal <a :href="developerPortalUrl">{{ developerPortalUrl }}</a> </p>
-        <p class="version">Version {{ version }} created {{ created }}</p>
       </div>
     </VerticalStackLayout>
   </div>
@@ -62,7 +62,8 @@ ul {
 }
 
 .version{
-  padding-top: 3em;
+  padding-top: 1em;
+  font-size: 0.7em;
 }
 
 .small{
@@ -71,7 +72,6 @@ ul {
 
 .left {
   width: 10em;
-  font-size: 1.4em;
   text-align: left;
   padding-right: 1em;
 }
@@ -83,7 +83,6 @@ ul {
 }
 
 .footer{
-  font-size: 0.8em;
   margin-bottom: 4em;
   margin-top: 4em;
 }

@@ -20,6 +20,10 @@ export default {
 
 <style scoped>
 
+.search-layout {
+  height: 100%;
+}
+
 .content{
   display: flex;
   flex-direction: row;
@@ -28,12 +32,23 @@ export default {
 }
 
 .menu{
+  min-width: 14em;
   width: 14em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 58px);
+  padding-right: 1em;
+  align-self: flex-start;
 }
 
 .results {
-  width: 80%;
+  padding-top: 1em;
+  min-width: 40em;
   flex: 1 0 auto;
+  margin-left: 1em;
 }
 
 </style>

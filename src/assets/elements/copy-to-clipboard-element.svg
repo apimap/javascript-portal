@@ -6,7 +6,7 @@
    viewBox="0 0 5.2915 5.2915"
    id="svg1696"
    sodipodi:docname="copy-to-clipboard-element.svg"
-   inkscape:version="1.1.2 (76b9e6a115, 2022-02-25)"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,34 +23,36 @@
      inkscape:pagecheckerboard="true"
      showgrid="false"
      inkscape:zoom="41.1"
-     inkscape:cx="8.1021898"
-     inkscape:cy="9.622871"
-     inkscape:window-width="3072"
-     inkscape:window-height="1580"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg1696" />
+     inkscape:cx="8.1265207"
+     inkscape:cy="9.6472019"
+     inkscape:window-width="1390"
+     inkscape:window-height="905"
+     inkscape:window-x="1975"
+     inkscape:window-y="274"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1696"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <path
      id="rect1129"
-     style="fill:none;stroke:#5c5470;stroke-width:0.264575;stroke-linecap:round"
+     style="fill:#ffffff;stroke:#5c5470;stroke-width:0.264575;stroke-linecap:round"
      d="M 1.5817331,3.6419151 H 0.82795513 V 0.86735016 H 3.1488308 V 1.3037594"
      sodipodi:nodetypes="ccccc" />
   <path
      id="rect1328"
-     style="fill:none;stroke:#5c5470;stroke-width:0.264575;stroke-linecap:round"
+     style="fill:#ffffff;stroke:#5c5470;stroke-width:0.264575;stroke-linecap:round"
      d="m 1.963879,1.6967397 h 2.3208756 v 2.774565 H 1.963879 Z"
      sodipodi:nodetypes="ccccc" />
   <path
-     style="fill:none;stroke:#5c5470;stroke-width:0.264575px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     style="fill:#ffffff;stroke:#5c5470;stroke-width:0.264575px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="M 2.3691719,2.5088051 H 3.6825535"
      id="path1708" />
   <path
-     style="fill:none;stroke:#5c5470;stroke-width:0.264575px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     style="fill:#ffffff;stroke:#5c5470;stroke-width:0.264575px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="M 2.3691719,3.1160371 H 2.7903027"
      id="path1710" />
   <path
-     style="fill:none;stroke:#5c5470;stroke-width:0.264575px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     style="fill:#ffffff;stroke:#5c5470;stroke-width:0.264575px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="M 2.3691719,3.7232687 H 3.6776973"
      id="path1712" />
 </svg>

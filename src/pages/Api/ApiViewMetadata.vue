@@ -1,5 +1,5 @@
 <template>
-  <div class="api-view-version">
+  <div class="api-view-metadata">
     <div class="table">
       <template class="row" v-for="(value, key) in metadata">
         <span>{{ key }}</span>
@@ -40,11 +40,14 @@ export default {
       immediate: true,
       deep: true,
       handler(newValue, oldValue) {
-        this.$store.dispatch('jv/search', [{ _jv: { type: 'version:element' } }, { url: this.version._jv.links.self }]).then((data) => {
-          this.$store.dispatch('jv/search', [{ _jv: { type: 'metadata:collection' } }, { url: this.version._jv.links.self + "/metadata"}]).then((metadata) => {
-            this.metadata = metadata._jv.attrs;
+        // TODO: Make this dynamic from returned urls
+        if(this.version !== undefined) {
+          this.$store.dispatch('jv/search', [{_jv: {type: 'version:element'}}, {url: this.version._jv.links.self}]).then((data) => {
+            this.$store.dispatch('jv/search', [{_jv: {type: 'metadata:collection'}}, {url: this.version._jv.links.self + "/metadata"}]).then((metadata) => {
+              this.metadata = metadata._jv.attrs;
+            })
           })
-        })
+        }
       }
     }
   },

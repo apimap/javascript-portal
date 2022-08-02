@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="30"
+   height="30"
+   viewBox="0 0 7.9374997 7.9374997"
+   version="1.1"
+   id="svg13048"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   sodipodi:docname="search-element.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview13050"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="6.4627688"
+     inkscape:cx="23.441965"
+     inkscape:cy="17.871597"
+     inkscape:window-width="1390"
+     inkscape:window-height="905"
+     inkscape:window-x="1933"
+     inkscape:window-y="240"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs13045" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#84d09e;fill-opacity:1;stroke:none;stroke-width:0.317331;stroke-linecap:round;stroke-dasharray:none"
+       id="path5026"
+       cx="3.96875"
+       cy="3.96875"
+       r="3.96875" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.26458333;stroke-linecap:round;stroke-dasharray:none"
+       id="rect5134"
+       width="2.0577407"
+       height="0.81018722"
+       x="6.2384319"
+       y="-0.39359969"
+       rx="0.12383506"
+       ry="0.12332693"
+       transform="rotate(43.490528)" />
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.26458333;stroke-linecap:round;stroke-dasharray:none"
+       id="circle5136"
+       cx="4.691"
+       cy="-0.027436312"
+       r="1.5335813"
+       transform="rotate(43.490528)" />
+  </g>
+</svg>

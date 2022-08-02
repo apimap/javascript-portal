@@ -1,23 +1,25 @@
 <template>
   <div class="search-field">
-    <div class="category button">
-      <div class="title" @click.self="showCategories">{{ this.category.label }} <img :src="showElement"><Tooltip class="tooltip" :content="this.category.description" /></div>
-      <ul class="dropdown" v-show="categoriesVisible">
-        <li v-for="(category, index) in searchCategories"
-            :key="category.value"
-            :value="category.value"
-            @click.stop="setCategory(category)"
-            class="button">
-          {{ category.label }} | <span class="dropdown-description">{{ category.description }}</span>
-        </li>
-      </ul>
-    </div>
-    <input class="input"
-           :placeholder="placeholder"
-           v-model="value"
-           v-on:keyup.enter="search" />
-    <div class="container">
-      <div class="search-botton button" @click="search">Search</div>
+    <div class="search-field-container">
+      <div class="category button">
+        <div class="title" @click.self="showCategories">{{ this.category.label }} <img :src="showElement"></div>
+        <ul class="dropdown" v-show="categoriesVisible">
+          <li v-for="(category, index) in searchCategories"
+              :key="category.value"
+              :value="category.value"
+              @click.stop="setCategory(category)"
+              class="button">
+            {{ category.label }} | <span class="dropdown-description">{{ category.description }}</span>
+          </li>
+        </ul>
+      </div>
+      <input class="input"
+             :placeholder="placeholder"
+             v-model="value"
+             v-on:keyup.enter="search" />
+      <div class="container">
+        <img class="search-botton" :src="searchElement" @click="search" />
+      </div>
     </div>
   </div>
 </template>
@@ -28,13 +30,12 @@ import {LOAD_SEARCH_OPTIONS} from "@/store/content/store";
 import { Select } from "@apimap/input-core";
 import showElement from "@/assets/elements/show-element.svg";
 import {CLEAR_FILTERS, CLEAR_RESULTS, SET_RESULTS} from "@/store/search/store";
-import {Paths} from "@/router/paths";
-import Tooltip from "@/components/Elements/Tooltip";
+import searchElement from "@/assets/elements/search-element.svg";
+
 
 export default {
   name: "SearchField",
   components: {
-    Tooltip,
     Select
   },
   data: function() {
@@ -42,7 +43,8 @@ export default {
       category: {},
       value: '',
       categoriesVisible: false,
-      showElement
+      showElement,
+      searchElement
     }
   },
   computed: {
@@ -51,7 +53,7 @@ export default {
     },
     placeholder: function (){
       if(this.category === undefined || this.category.label === undefined) return "";
-      return "Find API functionality by " + this.category.label.toLowerCase();
+      return "Find by " + this.category.label.toLowerCase();
     }
   },
   mounted() {
@@ -110,17 +112,13 @@ ul {
   font-size: 0.7em;
 }
 
-.title:hover .tooltip {
-  visibility: visible;
-}
-
 .container{
   position: relative;
 }
 
 .dropdown {
   position: absolute;
-  top: 50%;
+  top: calc(200% + 30px);
   z-index: 2;
   background-color: white;
   margin: 0;
@@ -131,50 +129,40 @@ ul {
 
 .search-botton {
   position: absolute;
-  left: -5.6em;
-  top: 0.3em;
+  left: -33px;
+  top: 3px;
   z-index: 1;
-  color: var(--search-button-text-color);
-  line-height: 2em;
   display: inline-block;
-  width: 3em;
-  height: 2em;
-  background-color: var(--search-button-background-color);
-  border: 1px solid var(--search-button-border-color);
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
-  border-radius: 0.1em;
 }
 
-.search-botton:hover{
-  color: var(--search-button-selected-text-color);
-  background-color: var(--search-button-selected-background-color);
-  border: 1px solid var(--search-button-selected-background-color);
+.search-field{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: stretch;
+  width: 100%;
 }
 
-.search-field {
-  height: 3em;
+.search-field-container {
+  height: 36px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
-  width: 100%;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  width: 30em;
 }
 
 .category {
-  border: 1px solid var(--search-field-background-color);
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
+  border: 1px solid var(--box-border-color);
+  border-bottom-left-radius: 33px;
+  border-top-left-radius: 33px;
+  border-right: none;
   color: var(--search-field-background-color);
-  width: 20%;
+  width: 10em;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1em;
   font-weight: bold;
-  line-height: 2.1em;
+  line-height: 36px;
   position: relative;
 }
 
@@ -183,15 +171,15 @@ ul {
 }
 
 .input {
-  background-color: var(--search-field-background-color);
-  border: 1px solid var(--search-field-background-color);
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
-  color: var(--search-field-text-color);
+  border: 1px solid var(--box-border-color);
+  border-bottom-right-radius: 33px;
+  border-top-right-radius: 33px;
+  border-left: none;
+  color: var(--search-field-background-color);
   width: 80%;
   text-align: center;
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 16px;
 }
 
 </style>

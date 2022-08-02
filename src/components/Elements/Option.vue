@@ -1,14 +1,17 @@
 <template>
-  <div class="option button"
+  <div class="filter-button button"
        @click="toggle"
+       @mouseleave="enableHover"
+       @mouseover="setPosition"
        v-bind:class="{
-             small: size === 'small',
-             large: size === 'large',
-             selected: selected }">
-      <img :src="selectedIcon" class="checkmark" v-if="selected"/>
-      {{ title }}
-      <Tooltip :content="description" class="tooltip" />
-    </div>
+             selected: selected,
+             hoverEnabled: hoverEnabled}">
+    <img :src="selectedIcon" class="checkmark" v-if="selected"/>
+    {{ title }}
+    <Tooltip :content="description"
+             class="tooltip"
+             :x="tooltipX"
+             :y="tooltipY" />
   </div>
 </template>
 
@@ -27,17 +30,27 @@ export default {
     title: String,
     description: String,
     option: Object,
-    selected: Boolean,
-    size: String
+    selected: Boolean
   },
   data: function() {
     return {
-      selectedIcon
+      selectedIcon,
+      hoverEnabled: true,
+      tooltipX: 0,
+      tooltipY: 0
     }
   },
   methods: {
+    enableHover(){
+      this.hoverEnabled = true;
+    },
     toggle() {
+      this.hoverEnabled = false;
       this.$emit("toggleOption", this.option);
+    },
+    setPosition(event){
+      this.tooltipX = event.pageX;
+      this.tooltipY = event.pageY;
     }
   }
 };
@@ -48,45 +61,11 @@ export default {
 
 .checkmark {
   position: absolute;
-  left: 10px;
+  left: 0;
 }
 
-.large {
-  padding-top: 0.6em;
-  padding-bottom: 0.6em;
-  font-size: 0.8em;
-  font-weight: bolder;
-}
-
-.small {
-  padding-top: 0.8em;
-  padding-bottom: 0.8em;
-  font-size: 0.8em;
-  font-weight: bolder;
-}
-
-.option {
-  position: relative;
-  border: 1px solid var(--unselected-item-border-color);
-  border-radius: 0.2em;
-  background-color: var(--unselected-item-background-color);
-  color: var(--unselected-item-text-color);
-  padding-left: 3em;
-  padding-right: 3em;
-}
-
-.option:hover .tooltip {
+.hoverEnabled:hover .tooltip {
   visibility: visible;
-}
-
-.option:hover {
-  text-decoration: underline;
-}
-
-.option.selected {
-  border: 1px solid var(--selected-item-border-color);
-  color: var(--selected-item-text-color);
-  background-color: var(--selected-item-background-color);
 }
 
 </style>

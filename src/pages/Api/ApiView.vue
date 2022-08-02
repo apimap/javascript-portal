@@ -5,11 +5,13 @@
       <LoadingIndicator :visible="this.displayLoading"/>
       <h1 v-if="this.displayContent">{{ api.name }}</h1>
       <div class="direct-link" v-if="this.displayContent">
-        DIRECT LINK: {{ link }} <span class="copyUrl copy" @click="copyToClipboard">COPY LINK</span>
+        {{ link }} <img :src="copyIcon" class="copy" @click="copyToClipboard" alt="copy"/>
       </div>
       <p v-if="this.displayContent" class="description">{{ api.description }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.description)"/></p>
-      <ApiViewSelection/>
-      <ApiViewMetadata :version="this.version" v-if="this.version"/>
+      <ApiViewSelection :page="this.pageName" @pageSelected="pageCallback"/>
+      <ApiViewMetadata :version="this.version" v-if="this.version" v-if="this.pageName === 'metadata'"/>
+      <ApiViewReadme :version="this.version" v-if="this.version" v-if="this.pageName === 'readme'"/>
+      <ApiViewChangelog :version="this.version" v-if="this.version" v-if="this.pageName === 'changelog'"/>
     </div>
   </div>
 </template>
@@ -23,6 +25,8 @@ import copyIcon from "@/assets/elements/copy-to-clipboard-element.svg";
 import ApiViewVersionSelection from "@/pages/Api/ApiViewVersionSelection";
 import ApiViewMetadata from "@/pages/Api/ApiViewMetadata";
 import ApiViewSelection from "@/pages/Api/ApiViewSelection";
+import ApiViewReadme from "@/pages/Api/ApiViewReadme";
+import ApiViewChangelog from "@/pages/Api/ApiViewChangelog";
 
 export default {
   name: "ApiView",
@@ -30,14 +34,20 @@ export default {
     ApiViewSelection,
     ApiViewVersionSelection,
     ApiViewMetadata,
+    ApiViewReadme,
+    ApiViewChangelog,
     LoadingIndicator
   },
   props: {
     api: Object
   },
   methods: {
+    pageCallback(pageName){
+      this.pageName = pageName;
+    },
     versionCallback(selectedVersion){
       this.version = selectedVersion;
+      this.$emit("versionSelected", selectedVersion);
     },
     copyToClipboard() {
       navigator.clipboard.writeText(window.location);
@@ -46,9 +56,14 @@ export default {
       navigator.clipboard.writeText(text);
     }
   },
+  watch: {
+    'api': function(value) {
+      this.pageName = 'metadata';
+    }
+  },
   computed: {
     link: function(){
-      return window.location.href;
+      return window.location;
     },
     displayLoading: function(){
       return this.api.name === undefined;
@@ -59,6 +74,7 @@ export default {
   },
   data: function() {
     return {
+      pageName: 'metadata',
       version: undefined,
       copyIcon
     }
@@ -91,14 +107,15 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 2em;
-  height: 100%;
+  height: calc(100% - 4em);
 }
 
 .content {
   width: 60em;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  padding-right: 2em;
+  overflow-y: auto;
+  padding-bottom: 2em;
+  padding-top: 1em;
 }
 
 .content::-webkit-scrollbar {
@@ -121,24 +138,6 @@ ul {
   text-align: left;
   font-size: 0.8em;
   white-space: nowrap;
-}
-
-.copyUrl {
-  font-size: 12px;
-  font-weight: bolder;
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
-  padding-left: 0.4em;
-  padding-right: 0.4em;
-  border: 2px solid var(--button-dark-border-color);
-  vertical-align: middle;
-  border-radius: 4px;
-  color: var(--button-dark-text-color);
-  background-color: var(--button-dark-background-color);
-}
-
-.copyUrl:hover {
-  text-decoration: underline;
 }
 
 img {

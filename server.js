@@ -43,6 +43,7 @@ app.get( "/customization.js", ( request, response, next) => {
             `const APIMAP_API_URL="${process.env.APIMAP_API_URL}"; \n`+
             `const APIMAP_DEVELOPER_URL="${process.env.APIMAP_DEVELOPER_URL}";\n`+
             `const APIMAP_SUPPORT="${process.env.APIMAP_SUPPORT}";\n`+
+            `const APIMAP_TITLE="${process.env.APIMAP_TITLE}";\n`+
             `document.title="${process.env.APIMAP_TITLE}";`
         )
     }

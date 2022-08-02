@@ -2,15 +2,17 @@
   <div class="result-bar-version-selection">
     <h3>Available API Versions</h3>
     <LoadingIndicator :visible="this.displayLoading"/>
-    <ul>
-      <li v-for="version in versions"
+    <div class="versions">
+      <div v-for="version in versions"
           :key="version.version"
-          v-bind:class="[ currentVersion === version.version ? 'selected' : '' ]"
-          @click.stop="selectVersion(version)"
-          class="option button">
-        <img :src="selectedIcon" class="checkmark" v-if="currentVersion === version.version"/> Version {{ version.version }}
-      </li>
-    </ul>
+          @click.stop="selectVersion(version)">
+        <div class="filter-button button"
+             v-bind:class="[ currentVersion === version.version ? 'selected' : '' ]">
+          <img :src="selectedIcon" class="checkmark" v-if="currentVersion === version.version"/> Version {{ version.version }}
+        </div>
+        <div class="rating" v-if="version.rating.documentation > 0">{{ stars(version.rating.documentation) }}/5 documentation rating</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -31,6 +33,11 @@ export default {
     selectVersion(version){
       this.currentVersion = version.version;
       this.$emit("versionSelected", version);
+    },
+    stars: function(value){
+      if( value < 1 ) return 0;
+      if( value > 5 ) return 5;
+      return value;
     }
   },
   data: function() {
@@ -46,7 +53,7 @@ export default {
       // TODO: Make this dynamic from returned urls
       this.$store.dispatch('jv/search', "api/" + this.api.name + '/version').then((data) => {
         this.versions = Object.keys(data).filter((key) => key !== '_jv').map((key) => { return data[key] });
-        if(this.versions.length == 1){
+        if(this.versions.length === 1){
           this.selectVersion(this.versions[0]);
         }
         this.displayLoading = false;
@@ -69,8 +76,16 @@ export default {
   border-radius: 0.2em;
   background-color: var(--unselected-item-background-color);
   color: var(--unselected-item-text-color);
-  padding-left: 3em;
-  padding-right: 3em;
+  margin-bottom: 0.6em;
+  font-size: 1em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: underline;
 }
 
 .option:hover .tooltip {
@@ -96,34 +111,17 @@ export default {
   border-right: 1px solid var(--box-border-color);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 0.4em;
-  margin-bottom: 0.4em;
+.versions {
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4em;
 }
 
-ul li{
-  display: inline-block;
-}
-
-li {
-  font-size: 1em;
-  border: 1px solid var(--selected-item-background-color);
-  padding-left: 0.8em;
-  padding-right: 0.8em;
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  text-decoration: underline;
-  margin-bottom: 0.6em;
-  width: 8em;
-}
-
-li:hover{
-  text-decoration: none;
+.rating {
+  margin: 0;
+  text-align: left;
+  font-size: 0.8em;
 }
 
 </style>

@@ -20,9 +20,8 @@
 </template>
 
 <script>
-import OptionGroup from "@/components/Elements/OptionGroup";
 
-import {ADD_METADATA_FILTER, REMOVE_METADATA_FILTER} from "@/store/search/store";
+import OptionGroup from "@/components/Elements/OptionGroup";
 import {LOAD_METADATA_OPTIONS} from "@/store/content/store";
 
 export default {

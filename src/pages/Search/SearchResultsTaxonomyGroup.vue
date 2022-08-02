@@ -37,9 +37,6 @@ export default {
           return this.classification['metadata:collection'][key];
         });
       }
-    },
-    getResults: function(){
-      return Object.keys(this.$store.getters.results).map((key) => { return this.$store.getters.results[key] });
     }
   }
 };

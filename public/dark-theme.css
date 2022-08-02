@@ -1,6 +1,6 @@
 :root {
     /* link */
-    --link-color: #5c5470;
+    --link-color: white;
     --hover-link-color: #5c5470;
     --light-link-color: #DBD8E3;
     --light-hover-link-color: white;
@@ -9,7 +9,7 @@
     --background-color: #2a2438;
     --text-color: #DBD8E3;
     --header-color: #DBD8E3;
-    --overlay-background-color: #5C5470;
+    --overlay-background-color: #303030;
     --overlay-text-color: white;
 
     /* search */

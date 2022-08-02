@@ -2,21 +2,22 @@
   <div class="api">
     <div class="content">
       <div class="close button"><img :src="closeElement" alt="Close" @click.stop="close"/></div>
-      <ApiView :api="content" />
+      <ApiView :api="content" @versionSelected="versionCallback"/>
+      <RatingPanel :version="version" v-if="version"/>
     </div>
   </div>
 </template>
 
 <script>
 import closeElement from "@/assets/elements/close-overlay-element.svg";
-import {SET_RESULTS} from "@/store/search/store";
-import {Paths} from "@/router/paths";
 import ApiView from "@/pages/Api/ApiView";
+import RatingPanel from "@/components/Elements/RatingPanel";
 
 export default {
   name: "Api",
   components: {
-    ApiView
+    ApiView,
+    RatingPanel
   },
   props: {
     api: String
@@ -24,12 +25,16 @@ export default {
   methods: {
     close() {
       this.$emit("closeApi")
+    },
+    versionCallback(selectedVersion){
+      this.version = selectedVersion;
     }
   },
   data: function() {
     return {
       closeElement,
-      content: {}
+      content: {},
+      version: undefined
     }
   },
   watch: {
@@ -69,7 +74,7 @@ export default {
   width: calc(100vw - 80px);
   top: 40px;
   left: 40px;
-  border-radius: 4px;
+  border-radius: 2px;
   color: var(--overlay-text-color);
   min-width: 68em;
 }
