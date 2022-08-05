@@ -35,7 +35,9 @@ jobs:
         run: echo "::set-output name=release_tag::$(git tag --points-at HEAD 'v[0-9]*' | head -n1)"
       - name: Set artifact version
         if: ${{ steps.read_tag.outputs.release_tag != '' }}
-        run: grep -rl '0.0.0-semantically-released' dist/ | xargs sed -i 's/0.0.0-semantically-released/${{ steps.buildx.outputs.name }}/'
+        run: |
+         grep -rl '0.0.0-semantically-released' dist/ | xargs sed -i 's/0.0.0-semantically-released/${{ steps.read_tag.outputs.release_tag }}/'
+         sed -i 's/0.0.0-semantically-released/${{ steps.read_tag.outputs.release_tag }}/ package.json'
       - name: Login to Docker Hub
         if: ${{ steps.read_tag.outputs.release_tag != '' }}
         uses: docker/login-action@v1
