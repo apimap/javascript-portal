@@ -62,7 +62,7 @@ export default {
 
 .search-results-taxonomy-group-item{
   margin-bottom: 2em;
-  padding: 2em;
+  padding: 1em;
   border-radius: 0.2em;
   border: 1px solid var(--box-border-color);
   width: 16em;
@@ -111,6 +111,8 @@ li {
   font-size: 0.8em;
   padding-right: 0.8em;
   margin-right: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 </style>

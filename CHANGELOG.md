@@ -1,6 +1,9 @@
 Changelog
 ===
 
+### 05.08.2022
+- Fixed API list text overflow bug
+
 ### 02.08.2022
 - Fixed missing results updates
 

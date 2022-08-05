@@ -47,6 +47,7 @@ export default {
 .results {
   padding-top: 1em;
   min-width: 40em;
+  max-width: 100%;
   flex: 1 0 auto;
   margin-left: 1em;
 }
