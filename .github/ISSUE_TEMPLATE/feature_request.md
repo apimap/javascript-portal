@@ -4,7 +4,7 @@ about: Suggest an idea or change for this project
 title: '[Feature]: A clear and descriptive title'
 labels: 'enhancement'
 assignees: ''
-projects: 'test'
+projects: 'Portal'
 
 ---
 
