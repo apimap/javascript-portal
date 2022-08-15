@@ -1,5 +1,6 @@
 <template>
   <div class="search-results-taxonomy-group-item button" @click="select(api)">
+    <div class="type" :style="getStyle"><img :src="getIcon" />{{ getText }}</div>
     <div class="title">{{ api.name }}</div>
     <div class="description">{{ api.description }}</div>
     <div>
@@ -19,10 +20,72 @@
 
 <script>
 
+import typeSdkIcon from "@/assets/icons/type-sdk-icon.svg";
+import typeTopicIcon from "@/assets/icons/type-topic-icon.svg";
+import typeRestIcon from "@/assets/icons/type-rest-icon.svg";
+import typeUnknownIcon from "@/assets/icons/type-unknown-icon.svg";
+import typeSoapIcon from "@/assets/icons/type-soap-icon.svg";
+
 export default {
   name: "SearchResultsTaxonomyGroupItem",
   props: {
     api: Object
+  },
+  computed:{
+    getStyle: function(){
+      var options = new Array().concat(
+          this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationImplementationOptions'],
+          this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationSpecificationOptions']
+      );
+
+      if(options !== undefined){
+        var match = options.find(obj => {
+          return obj['value'] === this.api['interface specification']
+        });
+
+        if(match['type'] === 'REST') return "color: #00d4aa";
+        if(match['type'] === 'SDK') return "color: #ff6600";
+        if(match['type'] === 'KAFKA TOPIC') return "color: #71c837";
+        if(match['type'] === 'SOAP') return "color: #ff5555";
+      }
+
+      return "color: #b3b3b3";
+    },
+    getIcon: function(){
+      var options = new Array().concat(
+          this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationImplementationOptions'],
+          this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationSpecificationOptions']
+      );
+
+      if(options !== undefined){
+        var match = options.find(obj => {
+          return obj['value'] === this.api['interface specification']
+        });
+
+        if(match['type'] === 'REST') return typeRestIcon;
+        if(match['type'] === 'SDK') return typeSdkIcon;
+        if(match['type'] === 'KAFKA TOPIC') return typeTopicIcon;
+        if(match['type'] === 'SOAP') return typeSoapIcon;
+      }
+
+      return typeUnknownIcon;
+    },
+    getText: function(){
+      var options = new Array().concat(
+          this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationImplementationOptions'],
+          this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationSpecificationOptions']
+      );
+
+      if(options !== undefined){
+        var match = options.find(obj => {
+          return obj['value'] === this.api['interface specification']
+        });
+
+        return match['type'];
+      }
+
+      return 'Unknown type';
+    }
   },
   methods:{
     select(api) {
@@ -31,12 +94,33 @@ export default {
     copyToClipboard(apiName) {
       navigator.clipboard.writeText(window.location + '/' + apiName);
     },
-  }
+  },
+  data: function() {
+    return {
+      typeSdkIcon,
+      typeUnknownIcon,
+      typeTopicIcon,
+      typeRestIcon,
+      typeSoapIcon
+    }
+  },
 };
 
 </script>
 
 <style scoped>
+
+.type{
+  font-weight: bold;
+  font-size: 0.8em;
+  text-align: left;
+  margin-bottom: 0.6em;
+}
+
+.type > img{
+  vertical-align: middle;
+  margin-right: 0.6em;
+}
 
 .copy {
   white-space: break-spaces;
@@ -95,7 +179,7 @@ p {
 .title{
   padding-top: 0.2em;
   padding-bottom: 0.5em;
-  font-size: 2em;
+  font-size: 1.6em;
   white-space: normal;
   line-height: 1.1em;
 }

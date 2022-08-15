@@ -1,6 +1,10 @@
 Changelog
 ===
 
+### 15.08.2022
+- Added icon and text colors to describe API type (sdk, rest, soap...)
+- Updated example metadata-options.json with examples
+
 ### 05.08.2022
 - Fixed API list text overflow bug
 

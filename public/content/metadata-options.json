@@ -2,40 +2,89 @@
   "apiOptions": {
     "visibilityOptions": [
       {
-        "label": "Content Missing",
-        "value": "Content Missing",
-        "description": "Content Missing",
-        "filter": "Content Missing"
+        "label": "Open Source",
+        "value": "OSS",
+        "description": "This API is distributed as Open Source",
+        "filter": "[metadata][visibility]"
+      },
+      {
+        "label": "In-house",
+        "value": "in-house",
+        "description": "This API is distributed as closed source and only available in-house",
+        "filter": "[metadata][visibility]"
       }
     ]
   },
   "apiVersionOptions": {
     "releaseStatusOptions": [
       {
-        "label": "Content Missing",
-        "value": "Content Missing",
-        "description": "Content Missing",
-        "filter": "Content Missing"
+        "label": "In Production",
+        "value": "In Production",
+        "description": "This API is in Production",
+        "filter": "[metadata][release status]"
+      },
+      {
+        "label": "Deprecated",
+        "value": "Deprecated",
+        "description": "This API is deprecated",
+        "filter": "[metadata][release status]"
       }
     ]
   },
   "organizationOptions": {
     "architectureLayerOptions": [
       {
-        "label": "Content Missing",
-        "value": "Content Missing",
-        "description": "Content Missing",
-        "filter": "Content Missing"
+        "label": "Frontend",
+        "value": "Frontend",
+        "description": "This API is part of the Front-end teams",
+        "filter": "[metadata][architecture layer]"
+      },
+      {
+        "label": "Backend",
+        "value": "Backend",
+        "description": "This API is part of the Back-end teams",
+        "filter": "[metadata][architecture layer]"
       }
     ],
     "businessUnitOptions": [
       {
-        "label": "Content Missing",
-        "value": "Content Missing",
-        "description": "Content Missing",
-        "filter": "Content Missing"
+        "label": "HQ Office",
+        "value": "HQ Office",
+        "description": "This API is supplied by the HQ Office",
+        "filter": "[metadata][business unit]"
+      },
+      {
+        "label": "Supplier 1",
+        "value": "Supplier 1",
+        "description": "This API is supplied by Supplier 1",
+        "filter": "[metadata][business unit]"
+      }
+    ]
+  },
+  "implementationDetailsOptions": {
+    "interfaceSpecificationImplementationOptions": [
+      {
+        "value": "JAVA 11",
+        "type": "SDK"
+      },
+      {
+        "value": "C# 8",
+        "type": "SDK"
+      }
+    ],
+    "interfaceSpecificationSpecificationOptions": [
+      {
+        "value": "JSON:API v1.1",
+        "type": "REST"
+      },
+      {
+        "value": "KAFKA TOPIC",
+        "type": "KAFKA TOPIC"
+      },
+      {
+        "value": "SOAP",
+        "type": "SOAP"
       }
     ]
   }
 }
-
