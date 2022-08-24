@@ -9,9 +9,9 @@
       </div>
       <p v-if="this.displayContent" class="description">{{ api.description }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.description)"/></p>
       <ApiViewSelection :page="this.pageName" @pageSelected="pageCallback"/>
-      <ApiViewMetadata :version="this.version" v-if="this.version" v-if="this.pageName === 'metadata'"/>
-      <ApiViewReadme :version="this.version" v-if="this.version" v-if="this.pageName === 'readme'"/>
-      <ApiViewChangelog :version="this.version" v-if="this.version" v-if="this.pageName === 'changelog'"/>
+      <ApiViewMetadata :version="this.version" v-if="this.version && this.pageName === 'metadata'"/>
+      <ApiViewReadme :version="this.version" v-if="this.version && this.pageName === 'readme'"/>
+      <ApiViewChangelog :version="this.version" v-if="this.version && this.pageName === 'changelog'"/>
     </div>
   </div>
 </template>
@@ -41,24 +41,43 @@ export default {
   props: {
     api: Object
   },
+  mounted() {
+    if(this.$route.params.page !== undefined){
+      this.pageName = this.$route.params.page;
+    }else{
+      this.pageName = 'metadata';
+    }
+  },
   methods: {
     pageCallback(pageName){
       this.pageName = pageName;
+      this.navigate();
     },
     versionCallback(selectedVersion){
-      this.version = selectedVersion;
-      this.$emit("versionSelected", selectedVersion);
+      if(this.version !== selectedVersion) {
+        this.version = selectedVersion;
+        this.$emit("versionSelected", selectedVersion);
+        this.navigate();
+      }
     },
-    copyToClipboard() {
+    navigate(){
+      if(this.api.name !== undefined && this.version === undefined && this.pageName === undefined){
+        this.$router.push({ name: 'Api', params: { api: this.api.name }});
+      }
+
+      if(this.api.name !== undefined && this.version !== undefined && this.pageName === undefined) {
+        this.$router.push({ name: 'Api Version', params: { api: this.api.name, version: this.version.version }});
+      }
+
+      if(this.api.name !== undefined && this.version !== undefined && this.pageName !== undefined) {
+        this.$router.push({ name: 'Api Version Page', params: { api: this.api.name, version: this.version.version, page: this.pageName }});
+      }
+    },
+    copyToClipboard(){
       navigator.clipboard.writeText(window.location);
     },
     copyValueToClipboard(text){
       navigator.clipboard.writeText(text);
-    }
-  },
-  watch: {
-    'api': function(value) {
-      this.pageName = 'metadata';
     }
   },
   computed: {
@@ -74,8 +93,8 @@ export default {
   },
   data: function() {
     return {
-      pageName: 'metadata',
       version: undefined,
+      pageName: undefined,
       copyIcon
     }
   }
@@ -111,16 +130,11 @@ h1 {
 }
 
 .content {
-  width: 60em;
+  width: 100%;
   padding-right: 2em;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding-bottom: 2em;
   padding-top: 1em;
-}
-
-.content::-webkit-scrollbar {
-  width: 0;
-  height: 0;
 }
 
 .content > p {

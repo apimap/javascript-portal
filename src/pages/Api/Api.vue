@@ -72,8 +72,10 @@ export default {
   height: calc(100vh - 80px);
   z-index: 100;
   width: calc(100vw - 80px);
+  max-width: 80em;
   top: 40px;
-  left: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 2px;
   color: var(--overlay-text-color);
   min-width: 68em;

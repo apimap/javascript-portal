@@ -57,13 +57,11 @@ export default {
   methods:{
     setApi(api){
       this.api = api;
-      const { href } = this.$router.resolve({ name: 'Search Results'});
-      window.history.pushState({}, null, href + '/' + api.name );
+      this.$router.push({ name: 'Api', params: { api: this.api.name }});
     },
-    closeCallback(){
+    closeCallback() {
       this.api = undefined;
-      const { href } = this.$router.resolve({ name: 'Search Results'});
-      window.history.pushState({}, null, href);
+      this.$router.push({name: 'Search Results'});
     }
   },
   data: function () {

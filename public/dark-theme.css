@@ -9,7 +9,7 @@
     --background-color: #2a2438;
     --text-color: #DBD8E3;
     --header-color: #DBD8E3;
-    --overlay-background-color: #303030;
+    --overlay-background-color: #2A2438;
     --overlay-text-color: white;
 
     /* search */
@@ -39,7 +39,7 @@
     --unselected-item-border-color: #DBD8E3;
 
     /* groups */
-    --box-border-color: #DBD8E3;
+    --box-border-color: #5C5470;
     --box-background-color: #2A2438;
     --box-text-color: white;
 
