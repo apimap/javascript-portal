@@ -29,10 +29,17 @@ export default {
   components: {
     LoadingIndicator
   },
+  mounted() {
+    if( this.$route.params.version !== undefined){
+      this.currentVersion = this.$route.params.version;
+    }
+  },
   methods:{
     selectVersion(version){
-      this.currentVersion = version.version;
-      this.$emit("versionSelected", version);
+      if(version !== undefined){
+        this.currentVersion = version.version;
+        this.$emit("versionSelected", version);
+      }
     },
     stars: function(value){
       if( value < 1 ) return 0;
@@ -52,11 +59,10 @@ export default {
     api(){
       // TODO: Make this dynamic from returned urls
       this.$store.dispatch('jv/search', "api/" + this.api.name + '/version').then((data) => {
-        this.versions = Object.keys(data).filter((key) => key !== '_jv').map((key) => { return data[key] });
-        if(this.versions.length === 1){
-          this.selectVersion(this.versions[0]);
-        }
         this.displayLoading = false;
+        this.versions = Object.keys(data).filter((key) => key !== '_jv').map((key) => { return data[key] });
+        if(this.versions.length === 1){ this.selectVersion(this.versions[0]);
+        }else{ this.selectVersion(this.versions.find(o => o.version === this.currentVersion)); }
       })
     }
   }

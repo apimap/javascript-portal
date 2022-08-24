@@ -33,6 +33,8 @@ export default {
   },
   computed:{
     getStyle: function(){
+      if(this.$store.getters.metadataOptions['implementationDetailsOptions'] === undefined) return;
+
       var options = new Array().concat(
           this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationImplementationOptions'],
           this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationSpecificationOptions']
@@ -43,15 +45,19 @@ export default {
           return obj['value'] === this.api['interface specification']
         });
 
-        if(match['type'] === 'REST') return "color: #00d4aa";
-        if(match['type'] === 'SDK') return "color: #ff6600";
-        if(match['type'] === 'KAFKA TOPIC') return "color: #71c837";
-        if(match['type'] === 'SOAP') return "color: #ff5555";
+        if(match !== undefined && match['type'] !== undefined){
+          if(match['type'] === 'REST') return "color: #00d4aa";
+          if(match['type'] === 'SDK') return "color: #ff6600";
+          if(match['type'] === 'KAFKA TOPIC') return "color: #71c837";
+          if(match['type'] === 'SOAP') return "color: #ff5555";
+        }
       }
 
       return "color: #b3b3b3";
     },
     getIcon: function(){
+      if(this.$store.getters.metadataOptions['implementationDetailsOptions'] === undefined) return;
+
       var options = new Array().concat(
           this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationImplementationOptions'],
           this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationSpecificationOptions']
@@ -62,15 +68,19 @@ export default {
           return obj['value'] === this.api['interface specification']
         });
 
-        if(match['type'] === 'REST') return typeRestIcon;
-        if(match['type'] === 'SDK') return typeSdkIcon;
-        if(match['type'] === 'KAFKA TOPIC') return typeTopicIcon;
-        if(match['type'] === 'SOAP') return typeSoapIcon;
+        if(match !== undefined && match['type'] !== undefined) {
+          if (match['type'] === 'REST') return typeRestIcon;
+          if (match['type'] === 'SDK') return typeSdkIcon;
+          if (match['type'] === 'KAFKA TOPIC') return typeTopicIcon;
+          if (match['type'] === 'SOAP') return typeSoapIcon;
+        }
       }
 
       return typeUnknownIcon;
     },
     getText: function(){
+      if(this.$store.getters.metadataOptions['implementationDetailsOptions'] === undefined) return;
+
       var options = new Array().concat(
           this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationImplementationOptions'],
           this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationSpecificationOptions']
@@ -81,7 +91,9 @@ export default {
           return obj['value'] === this.api['interface specification']
         });
 
-        return match['type'];
+        if(match !== undefined){
+          return match['type'];
+        }
       }
 
       return 'Unknown type';

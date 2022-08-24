@@ -39,7 +39,8 @@ export default new Router({
             },
             children: [
                 {
-                    path: ":api",
+                    path: Paths.api.url,
+                    name: Paths.api.name,
                     component: Api,
                     meta: {
                         breadcrumb: [
@@ -47,6 +48,32 @@ export default new Router({
                             {name: Paths.search.name }
                         ],
                     },
+                    children: [
+                        {
+                            path: Paths.apiVersion.url,
+                            name: Paths.apiVersion.name,
+                            component: Api,
+                            meta: {
+                                breadcrumb: [
+                                    {name: Paths.root.name, link: "/"},
+                                    {name: Paths.search.name }
+                                ],
+                            },
+                            children: [
+                                {
+                                    path: Paths.apiMetadata.url,
+                                    name: Paths.apiMetadata.name,
+                                    component: Api,
+                                    meta: {
+                                        breadcrumb: [
+                                            {name: Paths.root.name, link: "/"},
+                                            {name: Paths.search.name }
+                                        ],
+                                    },
+                                }
+                            ]
+                        }
+                    ]
                 },
             ]
         },

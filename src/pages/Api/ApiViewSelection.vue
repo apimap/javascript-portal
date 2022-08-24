@@ -43,6 +43,7 @@ li:hover{
 }
 
 ul li{
+  cursor: pointer;
   display: inline-block;
   padding-left: 1em;
   padding-right: 1em;
