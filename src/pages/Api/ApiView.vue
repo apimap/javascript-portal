@@ -8,6 +8,7 @@
         {{ link }} <img :src="copyIcon" class="copy" @click="copyToClipboard" alt="copy"/>
       </div>
       <p v-if="this.displayContent" class="description">{{ api.description }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.description)"/></p>
+      <p v-if="this.displayCodeRepository" class="code-repository"> Code Repository: {{ api.codeRepository }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.codeRepository)"/></p>
       <ApiViewSelection :page="this.pageName" @pageSelected="pageCallback"/>
       <ApiViewMetadata :version="this.version" v-if="this.version && this.pageName === 'metadata'"/>
       <ApiViewReadme :version="this.version" v-if="this.version && this.pageName === 'readme'"/>
@@ -89,6 +90,9 @@ export default {
     },
     displayContent: function(){
       return this.api.name !== undefined;
+    },
+    displayCodeRepository: function(){
+      return this.api.codeRepository !== undefined;
     }
   },
   data: function() {
@@ -113,7 +117,13 @@ h1 {
 }
 
 .description {
-  line-height: 1.4em;
+  line-height: 1.2em;
+}
+
+.code-repository{
+  line-height: 1.1px;
+  padding: 0 !important;
+  margin: 1em !important;
 }
 
 .direct-link {

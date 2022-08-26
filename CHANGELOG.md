@@ -1,6 +1,9 @@
 Changelog
 ===
 
+### 26.08.2022
+- Added git url to API description page
+
 ### 24.08.2022
 - Fixed missing scrollbar in chrome
 - Fixed UI adjustments
