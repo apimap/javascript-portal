@@ -71,6 +71,27 @@ html {
     white-space: nowrap;
 }
 
+.option-button {
+    white-space: break-spaces;
+    position: relative;
+    border-radius: 0.2em;
+    text-align: center;
+    text-overflow: ellipsis;
+    padding: 0.3em 1em;
+    font-size: 0.8em;
+    font-weight: bolder;
+    border: 1px solid var(--selected-item-border-color);
+    color: var(--selected-item-text-color);
+    background-color: var(--selected-item-background-color);
+}
+
+.option-button:hover {
+    text-decoration: underline;
+    background-color: var(--unselected-item-background-color);
+    color: var(--unselected-item-text-color);
+    border: 1px solid var(--unselected-item-border-color);
+}
+
 .filter-button {
     white-space: break-spaces;
     position: relative;
@@ -146,4 +167,84 @@ a.light:hover {
     text-align: center;
     padding: 0;
     height: inherit;
+}
+
+/*
+* Special buttons
+*/
+
+.soap-button{
+    color: #ff5555;
+    border: 2px solid #ff5555;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 0.2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    gap: 1em;
+}
+
+.soap-button:hover{
+    background-color: #ff5555;
+    color: white;
+}
+
+.rest-button{
+    color: #00d4aa;
+    border: 2px solid #00d4aa;
+    padding-left: 1em;
+    border-radius: 0.2em;
+    padding-right: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    gap: 1em;
+}
+
+.rest-button:hover{
+    color: white;
+    background-color: #00d4aa;
+}
+
+.sdk-button{
+    color: #ff6600;
+    border: 2px solid #ff6600;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 0.2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    gap: 1em;
+}
+
+.sdk-button:hover{
+    background-color: #ff6600;
+    color: white;
+}
+
+.kafka-button{
+    color: #71c837;
+    border: 2px solid #71c837;
+    padding-left: 1em;
+    border-radius: 0.2em;
+    padding-right: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    gap: 1em;
+}
+
+.kafka-button:hover {
+    background-color: #71c837;
+    color: white;
 }

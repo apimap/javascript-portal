@@ -31,6 +31,7 @@ export default new Router({
             path: Paths.search.url,
             name: Paths.search.name,
             component: SearchResults,
+            props: true,
             meta: {
                 breadcrumb: [
                     {name: Paths.root.name, link: Paths.root.url},
@@ -42,6 +43,7 @@ export default new Router({
                     path: Paths.api.url,
                     name: Paths.api.name,
                     component: Api,
+                    props: true,
                     meta: {
                         breadcrumb: [
                             {name: Paths.root.name, link: "/"},
@@ -53,6 +55,7 @@ export default new Router({
                             path: Paths.apiVersion.url,
                             name: Paths.apiVersion.name,
                             component: Api,
+                            props: true,
                             meta: {
                                 breadcrumb: [
                                     {name: Paths.root.name, link: "/"},
@@ -64,6 +67,7 @@ export default new Router({
                                     path: Paths.apiMetadata.url,
                                     name: Paths.apiMetadata.name,
                                     component: Api,
+                                    props: true,
                                     meta: {
                                         breadcrumb: [
                                             {name: Paths.root.name, link: "/"},

@@ -49,8 +49,8 @@ export default {
       this.$emit("toggleOption", this.option);
     },
     setPosition(event){
-      this.tooltipX = event.pageX;
-      this.tooltipY = event.pageY;
+      this.tooltipX = event.clientX;
+      this.tooltipY = event.clientY;
     }
   }
 };

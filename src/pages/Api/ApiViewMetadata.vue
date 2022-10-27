@@ -1,8 +1,8 @@
 <template>
   <div class="api-view-metadata">
     <div class="table">
-      <template class="row" v-for="(value, key) in metadata">
-        <span>{{ key }}</span>
+      <template class="row" v-for="(value, key) in metadata" v-if="key !== 'description'">
+        <span class="capitalize">{{ key }}</span>
         <template v-if="Array.isArray(value)">
           <span>
             <ul>
@@ -62,6 +62,10 @@ export default {
 
 <style scoped>
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .table {
   display: grid;
   grid-template-columns: auto auto;
@@ -84,6 +88,11 @@ ul {
 
 img {
   vertical-align: middle;
+}
+
+li {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
 }
 
 </style>

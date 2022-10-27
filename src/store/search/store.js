@@ -17,6 +17,9 @@ export default {
         results: []
     },
     getters: {
+        count: state => payload => {
+            return state.filters.filter(e => e['key'] === payload).length;
+        },
         filters: state => {
             let returnValue = {};
             state.filters.forEach(f => {
@@ -52,11 +55,13 @@ export default {
         },
         [ADD_METADATA_FILTER](state, payload) {
             // Payload: {key: string, value: string}
-            state.filters.push({ key: payload.key, value: payload.value });
+            if(!state.filters.find(element => element.key === payload.key && element.value === payload.value)){
+                state.filters.push({ key: payload.key, value: payload.value });
+            }
         },
         [REMOVE_METADATA_FILTER](state, payload) {
             // Payload: {key: string, value: string}
-            state.filters.splice(state.filters.findIndex( (e) => e.key === payload.key && e.value === payload.value ), 1);
+            state.filters = state.filters.filter(e => e.value !== payload.value || e.key !== payload.key);
         },
         [ADD_CLASSIFICATION_FILTER](state, payload) {
             // Payload: {urn: string}

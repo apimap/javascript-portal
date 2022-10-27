@@ -9,10 +9,10 @@
     </div>
     <div class="metadata">
       <ul>
-        <li>Release status: {{ api['release status'] }}</li>
-        <li>Version: {{ api['api version'] }}</li>
-        <li>Interface: {{ api['interface specification'] }}</li>
-        <li>Architecture layer: {{ api['architecture layer'] }}</li>
+        <li :title="api['release status']">Release status: {{ api['release status'] }}</li>
+        <li :title="api['api version']">Version: {{ api['api version'] }}</li>
+        <li :title="api['interface specification']">Interface: {{ api['interface specification'] }}</li>
+        <li :title="api['architecture layer']">Architecture layer: {{ api['architecture layer'] }}</li>
       </ul>
     </div>
   </div>
@@ -42,7 +42,7 @@ export default {
 
       if(options !== undefined){
         var match = options.find(obj => {
-          return obj['value'] === this.api['interface specification']
+          return obj['value'].toLowerCase() === this.api['interface specification'].toLowerCase()
         });
 
         if(match !== undefined && match['type'] !== undefined){
@@ -65,7 +65,7 @@ export default {
 
       if(options !== undefined){
         var match = options.find(obj => {
-          return obj['value'] === this.api['interface specification']
+          return obj['value'].toLowerCase() === this.api['interface specification'].toLowerCase()
         });
 
         if(match !== undefined && match['type'] !== undefined) {
@@ -88,7 +88,7 @@ export default {
 
       if(options !== undefined){
         var match = options.find(obj => {
-          return obj['value'] === this.api['interface specification']
+          return obj['value'].toLowerCase() === this.api['interface specification'].toLowerCase()
         });
 
         if(match !== undefined){
@@ -157,7 +157,6 @@ export default {
 }
 
 .search-results-taxonomy-group-item{
-  margin-bottom: 2em;
   padding: 1em;
   border-radius: 0.2em;
   border: 1px solid var(--box-border-color);

@@ -79,6 +79,7 @@ export default {
   border-radius: 2px;
   color: var(--overlay-text-color);
   min-width: 68em;
+  border: 1px solid black;
 }
 
 .close {

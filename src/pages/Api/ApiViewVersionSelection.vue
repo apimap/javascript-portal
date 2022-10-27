@@ -115,6 +115,7 @@ export default {
   padding-right: 1.2em;
   text-align: center;
   border-right: 1px solid var(--box-border-color);
+  overflow-y: auto;
 }
 
 .versions {

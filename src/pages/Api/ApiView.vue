@@ -5,10 +5,10 @@
       <LoadingIndicator :visible="this.displayLoading"/>
       <h1 v-if="this.displayContent">{{ api.name }}</h1>
       <div class="direct-link" v-if="this.displayContent">
-        {{ link }} <img :src="copyIcon" class="copy" @click="copyToClipboard" alt="copy"/>
+        Direct URL: {{ link }} <img :src="copyIcon" class="copy" @click="copyToClipboard" alt="copy"/>
       </div>
       <p v-if="this.displayContent" class="description">{{ api.description }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.description)"/></p>
-      <p v-if="this.displayCodeRepository" class="code-repository"> Code Repository: {{ api.codeRepository }} <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.codeRepository)"/></p>
+      <p v-if="this.displayCodeRepository" class="code-repository"><img :src="codeRepository"/> <a :href="api.codeRepository" target="_blank">{{ api.codeRepository }}</a> <img :src="copyIcon" alt="copy" class="copy" @click="copyValueToClipboard(api.codeRepository)"/></p>
       <ApiViewSelection :page="this.pageName" @pageSelected="pageCallback"/>
       <ApiViewMetadata :version="this.version" v-if="this.version && this.pageName === 'metadata'"/>
       <ApiViewReadme :version="this.version" v-if="this.version && this.pageName === 'readme'"/>
@@ -22,6 +22,7 @@
 import LoadingIndicator from "@/components/Elements/LoadingIndicator";
 
 import copyIcon from "@/assets/elements/copy-to-clipboard-element.svg";
+import codeRepository from "@/assets/elements/code-repository-element.svg";
 
 import ApiViewVersionSelection from "@/pages/Api/ApiViewVersionSelection";
 import ApiViewMetadata from "@/pages/Api/ApiViewMetadata";
@@ -92,14 +93,15 @@ export default {
       return this.api.name !== undefined;
     },
     displayCodeRepository: function(){
-      return this.api.codeRepository !== undefined;
+      return this.api.codeRepository !== undefined && this.api.codeRepository !== null;
     }
   },
   data: function() {
     return {
       version: undefined,
       pageName: undefined,
-      copyIcon
+      copyIcon,
+      codeRepository
     }
   }
 };
@@ -117,7 +119,7 @@ h1 {
 }
 
 .description {
-  line-height: 1.2em;
+  line-height: 1.1em;
 }
 
 .code-repository{

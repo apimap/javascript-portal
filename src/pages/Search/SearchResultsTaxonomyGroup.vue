@@ -79,7 +79,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  gap: 2em;
+  gap: 1em;
   padding-top: 1em;
 }
 

@@ -1,6 +1,14 @@
 Changelog
 ===
 
+### 25.10.2022
+- Fixed tooltip position bug
+- Added 4 easy to access search buttons
+- Added filters to support more options and implementation details
+- Bugfixes
+- Image size optimization
+- Updated build env.
+
 ### 26.08.2022
 - Added git url to API description page
 

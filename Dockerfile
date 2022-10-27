@@ -1,6 +1,7 @@
 FROM node:18-bullseye-slim
 MAINTAINER apimap.io
 RUN adduser --uid 467 --system --group vue
+RUN mkdir /app && chown vue:vue /app
 USER vue:vue
 ENV APIMAP_API_URL="http://localhost"
 ENV APIMAP_DEVELOPER_URL="http://localhost"

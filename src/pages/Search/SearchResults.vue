@@ -8,7 +8,7 @@
       </CenterLayout>
     </div>
     <CenterLayout width='80%'>
-        <Api v-show="api"
+        <Api v-if="selectedApi"
              @closeApi="closeCallback"
              :api="selectedApi"/>
         <ResultLayout v-bind:class="[ api !== undefined ? 'noscroll' : '' ]">
@@ -16,8 +16,9 @@
             <TaxonomyFilterMenu class="element"/>
           </template>
           <template v-slot:results>
-            <MetadataFilterMenu/>
+            <MetadataFilterMenu />
             <SearchResultsList @apiSelected="setApi"/>
+            <img v-show="displayRefresh" :src="refreshResultsElement" alt="Refresh" class="refresh button" @click="search"/>
             <Footer/>
           </template>
         </ResultLayout>
@@ -35,13 +36,18 @@ import {CenterLayout} from "@apimap/layout-core";
 import TheBreadcrumbs from "@apimap/the-breadcrumbs";
 import Footer from "@/components/Elements/Footer";
 import addApiElement from "@/assets/elements/add-api-element.svg";
+import refreshResultsElement from "@/assets/elements/refresh-results-element.svg";
 import ResultLayout from "@/components/Layout/ResultLayout";
 import {SET_RESULTS} from "@/store/search/store";
+
+import OptionGroup from "@/components/Elements/OptionGroup";
+import {LOAD_METADATA_OPTIONS} from "@/store/content/store";
 
 export default {
   name: "SearchResults",
   components: {
     SearchResultsList,
+    OptionGroup,
     MetadataFilterMenu,
     TaxonomyFilterMenu,
     ResultLayout,
@@ -52,51 +58,58 @@ export default {
     Footer
   },
   mounted() {
-    this.api = this.$route.params.api;
+    this.$store.dispatch(LOAD_METADATA_OPTIONS);
   },
   methods:{
     setApi(api){
       this.api = api;
       this.$router.push({ name: 'Api', params: { api: this.api.name }});
     },
-    closeCallback() {
+    closeCallback(){
       this.api = undefined;
       this.$router.push({name: 'Search Results'});
+    },
+    search(){
+      this.$store.dispatch('jv/get', ["classification", {params: this.$store.getters.filters}]).then((data) => {
+        this.$store.dispatch(SET_RESULTS, data);
+      })
     }
   },
-  data: function () {
+  data: function() {
     return {
       api: undefined,
-      addApiElement
+      addApiElement,
+      refreshResultsElement
     };
   },
   watch: {
     '$store.state.search.filters': function(newValue, oldValue) {
       // TODO: Make this dynamic from returned urls
       if(newValue.length > 0) {
-        this.$store.dispatch('jv/get', ["classification", {params: this.$store.getters.filters}]).then((data) => {
-          this.$store.dispatch(SET_RESULTS, data);
-        })
+        this.search();
       }else{
         this.$store.dispatch(SET_RESULTS, {});
       }
     }
   },
   computed: {
-    title () {
+    displayRefresh: function(){
+      return Object.keys(this.$store.getters.filters).length > 0;
+    },
+    title: function(){
       return APIMAP_TITLE;
     },
-    developerPortalUrl() {
+    developerPortalUrl: function(){
       return APIMAP_DEVELOPER_URL;
     },
-    emptyFilters: {
+    emptyFilters:{
       get() {
-        return this.$store.getters.filters.length <= 0;
+        return Object.keys(this.$store.getters.filters).length <= 0;
       }
     },
-    selectedFilters: {
+    selectedFilters:{
       get() {
-        return this.$store.getters.filters.length > 0;
+        return Object.keys(this.$store.getters.filters).length > 0;
       }
     },
     selectedApi: function(){
@@ -116,6 +129,14 @@ export default {
 
 img{
   vertical-align: middle;
+}
+
+.refresh {
+  transition: transform 1.2s ease-in-out;
+}
+
+.refresh:hover {
+  transform: rotate(-360deg);
 }
 
 .title{
